@@ -1,43 +1,36 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strrch.c                                        :+:      :+:    :+:   */
+/*   prng.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: kerama <kerama@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/10/14 14:18:21 by kerama            #+#    #+#             */
-/*   Updated: 2025/10/17 10:24:54 by kerama           ###   ########.fr       */
+/*   Created: 2025/11/04 11:34:01 by kerama            #+#    #+#             */
+/*   Updated: 2025/11/04 12:52:46 by kerama           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdlib.h>
-#include "libft.h"
-#include "libft.h"
+#include <stdio.h>
 
-static size_t	ft_in_strlen(const char *s)
+unsigned long	seed(void)
 {
-	size_t	len;
+	int				x;
+	unsigned long	k;
 
-	len = 0;
-	while (s[len])
-		len++;
-	return (len);
+	k = (unsigned long)&x;
+	return (k);
 }
 
-char	*ft_strrchr(const char *s, int c)
+static unsigned long	my_rand(unsigned long *seed)
 {
-	size_t	i;
+	*seed = 6364136223846793005UL * (*seed) + 1UL;
+	return (*seed);
+}
 
-	if (!s)
-		return (NULL);
-	i = ft_in_strlen(s);
-	while (i > 0)
-	{
-		i--;
-		if (s[i] == (char)c)
-			return ((char *)&s[i]);
-	}
-	if (c == '\0')
-		return ((char *)&s[ft_in_strlen(s)]);
-	return (NULL);
+unsigned long	my_rand_range(unsigned long *seed, int min, int max)
+{
+	unsigned long	r;
+
+	r = my_rand(seed);
+	return ((r % (max - min + 1)) + min);
 }
