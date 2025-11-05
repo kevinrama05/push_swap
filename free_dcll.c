@@ -1,37 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   parse_args.c                                       :+:      :+:    :+:   */
+/*   free_dcll.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: kerama <kerama@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/11/02 10:59:54 by kerama            #+#    #+#             */
-/*   Updated: 2025/11/05 14:47:39 by kerama           ###   ########.fr       */
+/*   Created: 2025/11/05 14:37:48 by kerama            #+#    #+#             */
+/*   Updated: 2025/11/05 14:45:49 by kerama           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
-#include <stdlib.h>
 
-t_dcll  *create_stack_a(char **args)
+void free_dcll(t_dcll *head)
 {
-    int 	i;
-	t_dcll	*sorted;
-
-    i = 0;
-    if (!is_num(args[i]))
-        return (NULL);
-    else
-        sorted = create_node(args[i++]);
+    t_dcll *curr;
+    t_dcll *tmp;
     
-    while (args[i])
+    curr = head->next;
+    if (!head)
+        return;
+    while (curr != head)
     {
-        if (!is_num(args[i]))
-        {
-           free_dcll(sorted);
-		   return (NULL);
-        }
-        else
-			add_in_place
+        tmp = curr;
+        curr = curr->next;
+        free(tmp);
     }
+    free(head);
 }

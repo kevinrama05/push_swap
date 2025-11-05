@@ -6,14 +6,13 @@
 /*   By: kerama <kerama@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/31 08:41:49 by kerama            #+#    #+#             */
-/*   Updated: 2025/10/31 09:53:17 by kerama           ###   ########.fr       */
+/*   Updated: 2025/11/05 14:34:02 by kerama           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdlib.h>
 #include <stdio.h>
 #include "push_swap.h"
-#include "libft.h"
 
 t_dcll  *create_node(int data)
 {
