@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse_args.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kerama <kerama@student.42.fr>              +#+  +:+       +#+        */
+/*   By: ekrama10 <ekrama10@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/02 10:59:54 by kerama            #+#    #+#             */
-/*   Updated: 2025/11/05 14:47:39 by kerama           ###   ########.fr       */
+/*   Updated: 2025/11/08 13:27:44 by ekrama10         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,22 +16,28 @@
 t_dcll  *create_stack_a(char **args)
 {
     int 	i;
+	int		rank;
 	t_dcll	*sorted;
 
-    i = 0;
-    if (!is_num(args[i]))
-        return (NULL);
-    else
-        sorted = create_node(args[i++]);
-    
-    while (args[i])
-    {
-        if (!is_num(args[i]))
-        {
-           free_dcll(sorted);
-		   return (NULL);
-        }
-        else
-			add_in_place
-    }
+    i = 1;
+	rank = 0;
+	sorted == NULL;
+	while (args[i])
+	{
+		if (is_num(args[i]) == 0)
+		{
+			free_dcll(sorted);
+			return (NULL);
+		}
+		else
+		{
+			if (sorted == NULL)
+				sorted = create_node(ft_atoi(args[i]));
+			else
+				add_back(&sorted, ft_atio(args[i]), rank);
+			i++;
+			rank++;
+		}
+	}
+	return (sorted);
 }
