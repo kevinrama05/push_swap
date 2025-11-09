@@ -39,5 +39,5 @@ t_dcll  *create_stack_a(char **args)
 			rank++;
 		}
 	}
-	return (sorted);
+	return (sort_doubly_circular(sorted));
 }

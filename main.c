@@ -1,6 +1,7 @@
 
 #include "push_swap.h"
 #include <stdio.h>
+#include "libft/libft.h"
 void print_list(t_dcll *head)
 {
     if (!head)
@@ -13,7 +14,7 @@ void print_list(t_dcll *head)
     } while (temp != head);
     printf("\n");
 }
-
+/*
 int main(void)
 {
     t_dcll *head = NULL;
@@ -33,4 +34,11 @@ int main(void)
     print_list(head);
 
     return 0;
+}
+*/
+int main(void)
+{
+	printf("%d\n", ft_atoi("-23 "));
+	printf("%d\n", is_num("-23"));
+	return 0;
 }
