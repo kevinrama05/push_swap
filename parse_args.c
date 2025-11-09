@@ -3,41 +3,80 @@
 /*                                                        :::      ::::::::   */
 /*   parse_args.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ekrama10 <ekrama10@student.42.fr>          +#+  +:+       +#+        */
+/*   By: kerama <kerama@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/02 10:59:54 by kerama            #+#    #+#             */
-/*   Updated: 2025/11/08 13:27:44 by ekrama10         ###   ########.fr       */
+/*   Updated: 2025/11/09 13:14:46 by kerama           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 #include <stdlib.h>
 
-t_dcll  *create_stack_a(char **args)
+/* t_dcll  *create_stack_a(char **args)
 {
     int 	i;
 	int		rank;
-	t_dcll	*sorted;
+	t_dcll	*stack_a;
 
     i = 1;
 	rank = 0;
-	sorted == NULL;
+	stack_a = NULL;
 	while (args[i])
 	{
 		if (is_num(args[i]) == 0)
 		{
-			free_dcll(sorted);
+			free_dcll(stack_a);
 			return (NULL);
 		}
 		else
 		{
-			if (sorted == NULL)
-				sorted = create_node(ft_atoi(args[i]));
+			if (stack_a == NULL)
+				stack_a = create_node(ft_atoi(args[i]));
 			else
-				add_back(&sorted, ft_atio(args[i]), rank);
+				add_back(&stack_a, ft_atoi(args[i]), rank);
 			i++;
 			rank++;
 		}
 	}
-	return (sort_doubly_circular(sorted));
+	return (stack_a);
+} */
+
+t_dcll	*create_stack_a(char **args)
+{
+	int		i;
+	t_dcll	*stack_a;
+	int		value;
+
+	i = 1;
+	stack_a = NULL;
+	while (args[i])
+	{
+		if (!is_num(args[i]))
+		{
+			free_dcll(stack_a);
+			return (NULL);
+		}
+		value = ft_atoi(args[i]);
+		if (!stack_a)
+			stack_a = create_node(value, i - 1);
+		else
+			add_back(&stack_a, value, i - 1);
+		i++;
+	}
+	return (stack_a);
 }
+
+
+
+/*
+3 | 0
+4 | 1
+5 | 2
+6 | 3
+7 | 4
+8 | 5
+2 | 6
+*/
+
+

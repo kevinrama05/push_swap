@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   push_swap_utils.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ekrama10 <ekrama10@student.42.fr>          +#+  +:+       +#+        */
+/*   By: kerama <kerama@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/05 14:28:38 by kerama            #+#    #+#             */
-/*   Updated: 2025/11/09 11:02:30 by ekrama10         ###   ########.fr       */
+/*   Updated: 2025/11/09 11:44:39 by kerama           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ int	is_num(char *nptr)
 	num = 0;
 	if (nptr[i] == '-'  || nptr[i] == '+')
 		i++;
-	while(nptr[i] && (nptr[i] >= '0' || nptr[i] <= '9'))
+	while(nptr[i] && (nptr[i] >= '0' && nptr[i] <= '9'))
 	{
 		num = (num * 10) + (nptr[i] - '0');
 		if (-num < INT_MIN || num > INT_MAX)
@@ -45,7 +45,7 @@ int	is_num(char *nptr)
 	return (1);
 }
 
-int	main(int argc, char **argv)
+/* int	main(int argc, char **argv)
 {
 	int	i;
 
@@ -64,3 +64,4 @@ int	main(int argc, char **argv)
 	}
 	return (0);
 }
+ */

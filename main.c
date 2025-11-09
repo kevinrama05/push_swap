@@ -9,10 +9,10 @@ void print_list(t_dcll *head)
     t_dcll *temp = head;
     do
     {
-        printf("%d ", temp->data);
+        printf("[%d|%d]  <-->  ", temp->data, temp->index);
         temp = temp->next;
     } while (temp != head);
-    printf("\n");
+    printf("[END OF CYCLE]\n");
 }
 /*
 int main(void)
@@ -36,9 +36,20 @@ int main(void)
     return 0;
 }
 */
-int main(void)
+int main(int argc, char **argv)
 {
-	printf("%d\n", ft_atoi("-23 "));
-	printf("%d\n", is_num("-23"));
-	return 0;
+    if (argc == 1)
+    {
+        printf("Usage: ./t <arg1> <arg2>");
+        return (0);
+    }
+    t_dcll *stack_a;
+    stack_a = create_stack_a(argv);
+    printf("Parsed arguments with ascending ranks\n");
+    print_list(stack_a);
+    printf("\n");
+    t_dcll *sorted_stack_a = sort_doubly_circular(stack_a);
+    printf("Sorted arguments, and scrambled indexes(The original list, but represented by indexes)\n");
+    print_list(sorted_stack_a);
+    return (0);
 }

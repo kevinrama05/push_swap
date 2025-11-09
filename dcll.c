@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   dcll.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ekrama10 <ekrama10@student.42.fr>          +#+  +:+       +#+        */
+/*   By: kerama <kerama@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/31 08:41:49 by kerama            #+#    #+#             */
-/*   Updated: 2025/11/08 13:21:19 by ekrama10         ###   ########.fr       */
+/*   Updated: 2025/11/09 12:29:43 by kerama           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 #include <stdio.h>
 #include "push_swap.h"
 
-t_dcll  *create_node(int data)
+t_dcll  *create_node(int data, int index)
 {
     t_dcll  *new;
 
@@ -24,7 +24,7 @@ t_dcll  *create_node(int data)
     new->data = data;
     new->prev = new;
     new->next = new;
-    new->index = 0;
+    new->index = index;
     return (new);
 }
 
@@ -33,7 +33,7 @@ void    add_back(t_dcll **head, int data, int index)
     t_dcll  *new;
     t_dcll  *last_node;
 
-    new = create_node(data);
+    new = create_node(data, index);
     if (!*head)
         *head = new;
     last_node = (*head)->prev;
@@ -49,7 +49,7 @@ void    add_front(t_dcll **head, int data)
     t_dcll  *new;
     t_dcll  *last_node;
 
-    new = create_node(data);
+    new = create_node(data, 0);
     if (!new)
         return ;
     if (!*head)
