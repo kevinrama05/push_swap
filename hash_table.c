@@ -3,7 +3,6 @@
 #include <stdlib.h>
 #include <string.h>
 
-#define TABLE_SIZE 20000
 
 typedef struct entry_t {
     unsigned int key;
@@ -12,11 +11,11 @@ typedef struct entry_t {
 } entry_t;
 
 typedef struct {
-    ssize_t size;
+    size_t size;
     entry_t **entries;
 } ht_t;
 
-unsigned int hash(int key, int size) {
+unsigned int hash(int key, size_t size) {
     unsigned int x = (unsigned int)key;
     x = ((x >> 16) ^ x) * 0x45d9f3b;
     x = ((x >> 16) ^ x) * 0x45d9f3b;
@@ -32,20 +31,18 @@ entry_t *ht_pair(unsigned int key, unsigned int value) {
     return entry;
 }
 
-ht_t *ht_create(int size) {
+ht_t *ht_create(size_t size) {
     ht_t *hashtable = malloc(sizeof(ht_t) * 1);
     hashtable->entries = malloc(sizeof(entry_t*) * size);
-    int i = 0;
+    hashtable->size = size;
+    size_t i = 0;
     while (i < size)
-    {
-	    i++;
-	    hashtable->entries[i] = NULL;
-    }
+	    hashtable->entries[i++] = NULL;
 
     return hashtable;
 }
 
-void ht_set(ht_t *hashtable, unsigned int key, unsigned int value, ssize_t size) {
+void ht_set(ht_t *hashtable, unsigned int key, unsigned int value, size_t size) {
     unsigned int slot = hash(key, size);
     entry_t *entry = hashtable->entries[slot];
     if (entry == NULL) {
@@ -64,7 +61,7 @@ void ht_set(ht_t *hashtable, unsigned int key, unsigned int value, ssize_t size)
     prev->next = ht_pair(key, value);
 }
 
-unsigned int ht_get(ht_t *hashtable, unsigned char key, ssize_t size) {
+unsigned int ht_get(ht_t *hashtable, unsigned int key, size_t size) {
     unsigned int slot = hash(key, size);
     entry_t *entry = hashtable->entries[slot];
     if (entry == NULL) {
@@ -79,44 +76,13 @@ unsigned int ht_get(ht_t *hashtable, unsigned char key, ssize_t size) {
     return -1;
 }
 
-void ht_del(ht_t *hashtable, unsigned int key, ssize_t size) {
-    unsigned int bucket = hash(key, size);
-    entry_t *entry = hashtable->entries[bucket];
-    if (entry == NULL) {
-        return;
-    }
-    entry_t *prev;
-    int idx = 0;
-    while (entry != NULL) {
-        if (entry->key == key) {
-            if (entry->next == NULL && idx == 0) {
-                hashtable->entries[bucket] = NULL;
-            }
-            if (entry->next != NULL && idx == 0) {
-                hashtable->entries[bucket] = entry->next;
-            }
-            if (entry->next == NULL && idx != 0) {
-                prev->next = NULL;
-            }
-            if (entry->next != NULL && idx != 0) {
-                prev->next = entry->next;
-            }
-            free(entry);
-            return;
-        }
-        prev = entry;
-        entry = prev->next;
-        ++idx;
-    }
-}
-
-void ht_dump(ht_t *hashtable, ssize_t size) {
-    for (int i = 0; i < size; ++i) {
+void ht_dump(ht_t *hashtable, size_t size) {
+    for (size_t i = 0; i < size; ++i) {
         entry_t *entry = hashtable->entries[i];
         if (entry == NULL) {
             continue;
         }
-        printf("slot[%4d]: ", i);
+        printf("slot[%4ld]: ", i);
         for(;;) {
             printf("%u=%u ", entry->key, entry->value);
             if (entry->next == NULL) {
@@ -128,9 +94,9 @@ void ht_dump(ht_t *hashtable, ssize_t size) {
     }
 }
 
-void free_hash_table(ht_t *table)
+/* void free_ht(ht_t *table)
 {
-    ssize_t i;
+    size_t i;
     entry_t *current;
     entry_t *temp;
 
@@ -152,9 +118,25 @@ void free_hash_table(ht_t *table)
 
     free(table->entries);
     free(table);
+} */
+
+
+void free_ht(ht_t *table) {
+    if (!table || !table->entries)
+        return;
+    for (size_t i = 0; i < table->size; ++i) {
+        entry_t *entry = table->entries[i];
+        while (entry) {
+            entry_t *temp = entry;
+            entry = entry->next;
+            free(temp);
+        }
+    }
+    free(table->entries);
+    free(table);
 }
 
-int main(void) {
+/* int main(void) {
     ht_t *ht = ht_create(20);
     int i = 20;
     ht_set(ht, 2, 0, i);
@@ -166,6 +148,7 @@ int main(void) {
     ht_set(ht, 28, 6, i);
     printf("%u\n", ht_get(ht, 2, i));
     ht_dump(ht, i);
-    free(ht);
+    free_ht(ht);
     return 0;
 }
+ */

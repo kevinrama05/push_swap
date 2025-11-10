@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   dcll.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kerama <kerama@student.42.fr>              +#+  +:+       +#+        */
+/*   By: ekrama10 <ekrama10@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/31 08:41:49 by kerama            #+#    #+#             */
-/*   Updated: 2025/11/09 12:29:43 by kerama           ###   ########.fr       */
+/*   Updated: 2025/11/10 11:38:31 by ekrama10         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ void    add_back(t_dcll **head, int data, int index)
     new->index = index;
 }
 
-void    add_front(t_dcll **head, int data)
+void    add_front(t_dcll **head, int data, int index)
 {
     t_dcll  *new;
     t_dcll  *last_node;
