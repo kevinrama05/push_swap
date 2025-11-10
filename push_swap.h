@@ -30,5 +30,21 @@ int	            is_num(const char *nptr);
 void            free_dcll(t_dcll *head);
 t_dcll          *sort_doubly_circular(t_dcll *head);
 t_dcll          *create_stack_a(char **args);
+int		check_if_no_dup(t_dcll *head);
+typedef struct entry_t {
+    unsigned int key;
+    unsigned int value;
+    struct entry_t *next;
+} entry_t;
+typedef struct {
+    ssize_t size;
+    entry_t **entries;
+} ht_t;
+unsigned int hash(int key, int size);
+entry_t *ht_pair(unsigned int key, unsigned int value);
+ht_t *ht_create(int size);
+void ht_set(ht_t *hashtable, unsigned int key, unsigned int value, ssize_t size);
+unsigned int ht_get(ht_t *hashtable, unsigned char key, ssize_t size);
+void ht_del(ht_t *hashtable, unsigned int key, ssize_t size);
 
 #endif
