@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   push_swap.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ekrama10 <ekrama10@student.42.fr>          +#+  +:+       +#+        */
+/*   By: kerama <kerama@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/31 08:46:04 by kerama            #+#    #+#             */
-/*   Updated: 2025/11/10 11:38:50 by ekrama10         ###   ########.fr       */
+/*   Updated: 2025/11/10 18:14:08 by kerama           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,5 +50,17 @@ void free_ht(ht_t *table);
 int check_if_no_dup(t_dcll *head);
 void ht_dump(ht_t *hashtable, size_t size);
 t_dcll *copy_list(t_dcll *head);
+void push_b(t_dcll **stack_a, t_dcll **stack_b);
+void push_a(t_dcll **stack_b, t_dcll **stack_a);
+void rotate_a(t_dcll **stack_a);
+void rotate_b(t_dcll **stack_b);
+void rev_rotate_a(t_dcll **stack_a);
+void rev_rotate_b(t_dcll **stack_b);
+void rotate_ab(t_dcll **stack_a, t_dcll **stack_b);
+void rev_rotate_ab(t_dcll **stack_a, t_dcll **stack_b);
+void swap_a(t_dcll **stack_a);
+void swap_b(t_dcll **stack_b);
+void swap_ab(t_dcll **stack_a, t_dcll **stack_b);
+float disorder(t_dcll **stack_a, int size);
 
 #endif

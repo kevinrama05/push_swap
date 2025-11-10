@@ -15,6 +15,8 @@ void print_list(t_dcll *head)
     } while (temp != head);
     printf("[END OF CYCLE]\n");
 }
+
+// Main test for sorting the DCLL
 /*
 int main(void)
 {
@@ -37,7 +39,9 @@ int main(void)
     return 0;
 }
 */
-int main(int argc, char **argv)
+
+// Main test to 
+/* int main(int argc, char **argv)
 {
     if (argc == 1)
     {
@@ -83,3 +87,6 @@ int main(int argc, char **argv)
     free_ht(hashtable);
     return 0;
 }
+ */
+
+ 

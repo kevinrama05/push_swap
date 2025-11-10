@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   dcll.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ekrama10 <ekrama10@student.42.fr>          +#+  +:+       +#+        */
+/*   By: kerama <kerama@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/31 08:41:49 by kerama            #+#    #+#             */
-/*   Updated: 2025/11/10 11:38:31 by ekrama10         ###   ########.fr       */
+/*   Updated: 2025/11/10 15:46:22 by kerama           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,14 +60,6 @@ void    add_front(t_dcll **head, int data, int index)
     new->next = *head;
     (*head)->prev = new;
     *head = new;
-}
-
-void    rotate(t_dcll **head, int rotate)
-{
-    if (rotate == 1)
-        *head = (*head)->next;
-    else
-        *head = (*head)->prev;
 }
 
 void	remove_front(t_dcll **head)
