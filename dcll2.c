@@ -1,5 +1,6 @@
 #include "push_swap.h"
-
+#include <stdlib.h>
+#include "libft/libft.h"
 int check_if_no_dup(t_dcll *head)
 {
 	t_dcll *temp = head;
@@ -13,8 +14,6 @@ int check_if_no_dup(t_dcll *head)
 	}
 	return 1;
 }
-
-#include <stdlib.h>
 
 t_dcll	*copy_list(t_dcll *head)
 {
@@ -57,52 +56,52 @@ void push_b(t_dcll **stack_a, t_dcll **stack_b)
 {
 	add_front(stack_b, (*stack_a)->data, (*stack_a)->index);
 	remove_front(stack_a);
-	ft_putstr_fd("pb\n");
+	ft_putstr_fd("pb\n", 1);
 }
 
 void push_a(t_dcll **stack_b, t_dcll **stack_a)
 {
 	add_front(stack_a, (*stack_b)->data, (*stack_b)->index);
 	remove_front(stack_b);
-	ft_putstr_fd("pa\n");
+	ft_putstr_fd("pa\n", 1);
 }
 
 void rotate_a(t_dcll **stack_a)
 {
 	*stack_a = (*stack_a)->next;
-	ft_putstr_fd("ra\n");
+	ft_putstr_fd("ra\n", 1);
 }
 
 void rotate_b(t_dcll **stack_b)
 {
 	*stack_b = (*stack_b)->next;
-	ft_putstr_fd("rb\n");
+	ft_putstr_fd("rb\n", 1);
 }
 
 void rev_rotate_a(t_dcll **stack_a)
 {
 	*stack_a = (*stack_a)->prev;
-	ft_putstr_fd("rra\n");
+	ft_putstr_fd("rra\n", 1);
 }
 
 void rev_rotate_b(t_dcll **stack_b)
 {
 	*stack_b = (*stack_b)->next;
-	ft_putstr_fd("rrb\n");
+	ft_putstr_fd("rrb\n", 1);
 }
 
 void rotate_ab(t_dcll **stack_a, t_dcll **stack_b)
 {
 	*stack_a = (*stack_a)->next;
 	*stack_b = (*stack_b)->next;
-	ft_putstr_fd("rr\n");
+	ft_putstr_fd("rr\n", 1);
 }
 
 void rev_rotate_ab(t_dcll **stack_a, t_dcll **stack_b)
 {
 	*stack_a = (*stack_a)->prev;
 	*stack_b = (*stack_b)->prev;
-	ft_putstr_fd("rrr\n");
+	ft_putstr_fd("rrr\n", 1);
 }
 
 void swap_a(t_dcll **stack_a)
@@ -113,7 +112,7 @@ void swap_a(t_dcll **stack_a)
 	temp = (*stack_a)->index;
 	(*stack_a)->index = (*stack_a)->next->index;
 	(*stack_a)->next->index = temp;
-	ft_putstr_fd("sa\n");
+	ft_putstr_fd("sa\n", 1);
 }
 
 void swap_b(t_dcll **stack_b)
@@ -124,7 +123,7 @@ void swap_b(t_dcll **stack_b)
 	temp = (*stack_b)->index;
 	(*stack_b)->index = (*stack_b)->next->index;
 	(*stack_b)->next->index = temp;
-	ft_putstr_fd("sb\n");
+	ft_putstr_fd("sb\n", 1);
 }
 
 void swap_ab(t_dcll **stack_a, t_dcll **stack_b)
@@ -142,10 +141,10 @@ void swap_ab(t_dcll **stack_a, t_dcll **stack_b)
 	temp = (*stack_b)->index;
 	(*stack_b)->index = (*stack_b)->next->index;
 	(*stack_b)->next->index = temp;
-	ft_putstr_fd("ss\n");
+	ft_putstr_fd("ss\n", 1);
 }
 
-float disorder(t_dcll **stack_a, int size)
+float disorder(t_dcll **stack_a)
 {
     int mistakes = 0;
     int total_pairs = 0;
@@ -153,7 +152,7 @@ float disorder(t_dcll **stack_a, int size)
     t_dcll *temp2;
     t_dcll *head;
 
-    if (!stack_a || !*stack_a || size < 2)
+    if (!stack_a || !*stack_a)
         return (0.0f);
     head = *stack_a;
     temp1 = head;
@@ -170,4 +169,18 @@ float disorder(t_dcll **stack_a, int size)
         temp1 = temp1->next;
     }
     return ((float)mistakes / (float)total_pairs);
+}
+
+int check_if_sorted(t_dcll *stack)
+{
+	t_dcll *temp = stack;
+	while (1)
+	{
+		if (temp->data > temp->next->data && temp->next != stack)
+			return 0;
+		temp = temp->next;
+		if (temp == stack)
+			break;
+	}
+	return 1;
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   push_swap.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kerama <kerama@student.42.fr>              +#+  +:+       +#+        */
+/*   By: ekrama10 <ekrama10@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/31 08:46:04 by kerama            #+#    #+#             */
-/*   Updated: 2025/11/10 18:14:08 by kerama           ###   ########.fr       */
+/*   Updated: 2025/11/10 23:00:21 by ekrama10         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,8 @@ typedef struct  s_dcll
     struct s_dcll   *prev;
     struct s_dcll   *next;
 }   t_dcll;
+void min_max_extraction(t_dcll **stack_a, t_dcll **stack_b);
+int check_if_sorted(t_dcll *stack);
 t_dcll          *create_node(int data, int index);
 void            add_back(t_dcll **head, int data, int index);
 void            add_front(t_dcll **head, int data, int index);
@@ -61,6 +63,6 @@ void rev_rotate_ab(t_dcll **stack_a, t_dcll **stack_b);
 void swap_a(t_dcll **stack_a);
 void swap_b(t_dcll **stack_b);
 void swap_ab(t_dcll **stack_a, t_dcll **stack_b);
-float disorder(t_dcll **stack_a, int size);
+float disorder(t_dcll **stack_a);
 
 #endif

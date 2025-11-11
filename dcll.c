@@ -6,7 +6,7 @@
 /*   By: kerama <kerama@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/31 08:41:49 by kerama            #+#    #+#             */
-/*   Updated: 2025/11/10 15:46:22 by kerama           ###   ########.fr       */
+/*   Updated: 2025/11/10 21:44:46 by ekrama10         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,6 +59,7 @@ void    add_front(t_dcll **head, int data, int index)
     new->prev = last_node;
     new->next = *head;
     (*head)->prev = new;
+    new->index = index;
     *head = new;
 }
 
