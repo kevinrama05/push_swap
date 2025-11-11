@@ -166,7 +166,7 @@ int main(int argc, char **argv)
     t_dcll *stack_b = NULL;
     printf("Disorder: %.2f%%\n\n", disorder_value * 100);
     print_list(stack_a);
-    min_max_extraction(stack_a, stack_b);
+    min_max_extraction(&stack_a, &stack_b);
     free_dcll(stack_a);
     free_dcll(copy_a);
     free_ht(hashtable);

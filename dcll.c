@@ -6,7 +6,7 @@
 /*   By: kerama <kerama@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/31 08:41:49 by kerama            #+#    #+#             */
-/*   Updated: 2025/11/10 21:44:46 by ekrama10         ###   ########.fr       */
+/*   Updated: 2025/11/11 11:11:27 by kerama           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,7 @@ void    add_front(t_dcll **head, int data, int index)
     t_dcll  *new;
     t_dcll  *last_node;
 
-    new = create_node(data, 0);
+    new = create_node(data, index);
     if (!new)
         return ;
     if (!*head)
@@ -71,7 +71,7 @@ void	remove_front(t_dcll **head)
     if (!head || !*head)
         return;
     temp = *head;
-    if (temp->next == temp)
+    if (temp->next == *head)
     {
         free(temp);
         *head = NULL;

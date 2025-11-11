@@ -2,6 +2,7 @@
 #include "push_swap.h"
 #include "libft/libft.h"
 #include <stdlib.h>
+#include <stdio.h>
 
 void	print_stacks(t_dcll *a, t_dcll *b)
 {
@@ -50,19 +51,19 @@ void min_max_extraction(t_dcll **stack_a, t_dcll **stack_b)
 	while (1)
 	{
 		if (tmp_a->index != i)
-		{
-			if (tmp_a->index > tmp_a->next->index)
-				switch_a(&tmp_a);
-			else
-				rotate_a(&tmp_a);
-		}
+			rev_rotate_a(&tmp_a);
 		else
 		{
 			push_b(&tmp_a, &tmp_b);
 			i++;
 		}
-		print_stacks(tmp_a, tmp_b);	
+		sleep(1);
+		if (tmp_a == NULL)
+			break;
 	}
 	while (tmp_b != NULL)
-		push_a(&tmp_b, &tmp_a);	
+	{	
+		push_a(&tmp_b, &tmp_a);
+		sleep(1);
+	}	
 }
