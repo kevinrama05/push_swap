@@ -6,7 +6,7 @@
 /*   By: kerama <kerama@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/11 11:27:26 by kerama            #+#    #+#             */
-/*   Updated: 2025/11/11 11:28:33 by kerama           ###   ########.fr       */
+/*   Updated: 2025/11/11 12:17:16 by kerama           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,4 +36,20 @@ static int isqrt(int n)
         guess--;
 
     return guess;
+}
+
+void sort_b(t_dcll **stack_b, int min, int max)
+{
+    if (check_if_sorted_dec(*stack_b) == 1)
+        return ;
+    t_dcll *temp = *stack_b;
+    while (1)
+    {
+        if (temp->index == max && temp->prev->index == min)
+        {
+            if (check_if_sorted_dec(temp) == 1)
+                return ;
+        }
+        if (temp->index == min && )
+    }
 }

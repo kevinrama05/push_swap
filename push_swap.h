@@ -6,7 +6,7 @@
 /*   By: kerama <kerama@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/31 08:46:04 by kerama            #+#    #+#             */
-/*   Updated: 2025/11/11 11:12:26 by kerama           ###   ########.fr       */
+/*   Updated: 2025/11/11 12:14:42 by kerama           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,6 @@ ht_t *ht_create(int size);
 void ht_set(ht_t *hashtable, unsigned int key, unsigned int value, size_t size);
 unsigned int ht_get(ht_t *hashtable, unsigned int key, size_t size);
 void free_ht(ht_t *table);
-int check_if_no_dup(t_dcll *head);
 void ht_dump(ht_t *hashtable, size_t size);
 t_dcll *copy_list(t_dcll *head);
 void push_b(t_dcll **stack_a, t_dcll **stack_b);
@@ -65,5 +64,7 @@ void swap_b(t_dcll **stack_b);
 void swap_ab(t_dcll **stack_a, t_dcll **stack_b);
 float disorder(t_dcll **stack_a);
 void min_max_extraction(t_dcll **stack_a, t_dcll **stack_b);
+int check_if_sorted(t_dcll *stack);
+int check_if_sorted_dec(t_dcll *stack);
 
 #endif

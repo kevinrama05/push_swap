@@ -171,12 +171,26 @@ float disorder(t_dcll **stack_a)
     return ((float)mistakes / (float)total_pairs);
 }
 
-int check_if_sorted(t_dcll *stack)
+int check_if_sorted_asc(t_dcll *stack)
 {
 	t_dcll *temp = stack;
 	while (1)
 	{
 		if (temp->data > temp->next->data && temp->next != stack)
+			return 0;
+		temp = temp->next;
+		if (temp == stack)
+			break;
+	}
+	return 1;
+}
+
+int check_if_sorted_dec(t_dcll *stack)
+{
+	t_dcll *temp = stack;
+	while (1)
+	{
+		if (temp->data < temp->next->data && temp->next != stack)
 			return 0;
 		temp = temp->next;
 		if (temp == stack)
