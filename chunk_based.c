@@ -50,6 +50,21 @@ void sort_b(t_dcll **stack_b, int min, int max)
             if (check_if_sorted_dec(temp) == 1)
                 return ;
         }
-        if (temp->index == min && )
+        if (temp->index == min && temp->next->index == max)
+		rotate_b(&temp);
+	else if (temp->index < temp->next->index)
+		swap_b(&temp);
+	else
+		rotate_b(&temp);
     }
+}
+
+void chunk_based_sort(t_dcll **stack_a, t_dcll **stack_b, size_t size)
+{
+	t_dcll *tmp_a = *stack_a;
+	t_dcll *tmp_b = *stack_b;
+	int chunk = isqrt((int)size);
+	if (chunk < 5)
+		chunk = 5;
+	while (1)
 }
