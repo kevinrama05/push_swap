@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   push_swap_utils.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ekrama10 <ekrama10@student.42.fr>          +#+  +:+       +#+        */
+/*   By: kerama <kerama@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/05 14:28:38 by kerama            #+#    #+#             */
-/*   Updated: 2025/11/10 09:16:28 by ekrama10         ###   ########.fr       */
+/*   Updated: 2025/11/12 09:22:41 by kerama           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,23 +35,10 @@ int	is_num(char *nptr)
 	return (1);
 }
 
-/* int	main(int argc, char **argv)
+void number_of_ops(char p)
 {
-	int	i;
-
-	if (argc < 2)
-	{
-		printf("Usage: %s <arg1> <arg2> ...\n", argv[0]);
-		return (1);
-	}
-
-	for (i = 1; i < argc; i++)
-	{
-		if (is_num(argv[i]))
-			printf("✅ \"%s\" is a valid integer.\n", argv[i]);
-		else
-			printf("❌ \"%s\" is NOT a valid integer.\n", argv[i]);
-	}
-	return (0);
+	static int ops;
+	ops++;
+	if (p == 'p')
+		ft_putnbr_fd(ops, 1);
 }
- */

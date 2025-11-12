@@ -6,7 +6,7 @@
 /*   By: kerama <kerama@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/11 11:27:26 by kerama            #+#    #+#             */
-/*   Updated: 2025/11/11 12:17:16 by kerama           ###   ########.fr       */
+/*   Updated: 2025/11/12 09:31:47 by kerama           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,11 +51,11 @@ void sort_b(t_dcll **stack_b, int min, int max)
                 return ;
         }
         if (temp->index == min && temp->next->index == max)
-		rotate_b(&temp);
-	else if (temp->index < temp->next->index)
-		swap_b(&temp);
-	else
-		rotate_b(&temp);
+		    rotate_b(&temp);
+	    else if (temp->index < temp->next->index)
+		    swap_b(&temp);
+	    else
+		    rotate_b(&temp);
     }
 }
 
@@ -66,5 +66,4 @@ void chunk_based_sort(t_dcll **stack_a, t_dcll **stack_b, size_t size)
 	int chunk = isqrt((int)size);
 	if (chunk < 5)
 		chunk = 5;
-	while (1)
 }

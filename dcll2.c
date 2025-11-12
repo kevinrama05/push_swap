@@ -57,6 +57,7 @@ void push_b(t_dcll **stack_a, t_dcll **stack_b)
 	add_front(stack_b, (*stack_a)->data, (*stack_a)->index);
 	remove_front(stack_a);
 	ft_putstr_fd("pb\n", 1);
+	number_of_ops('a');
 }
 
 void push_a(t_dcll **stack_b, t_dcll **stack_a)
@@ -64,30 +65,35 @@ void push_a(t_dcll **stack_b, t_dcll **stack_a)
 	add_front(stack_a, (*stack_b)->data, (*stack_b)->index);
 	remove_front(stack_b);
 	ft_putstr_fd("pa\n", 1);
+	number_of_ops('a');
 }
 
 void rotate_a(t_dcll **stack_a)
 {
 	*stack_a = (*stack_a)->next;
 	ft_putstr_fd("ra\n", 1);
+	number_of_ops('a');
 }
 
 void rotate_b(t_dcll **stack_b)
 {
 	*stack_b = (*stack_b)->next;
 	ft_putstr_fd("rb\n", 1);
+	number_of_ops('a');
 }
 
 void rev_rotate_a(t_dcll **stack_a)
 {
 	*stack_a = (*stack_a)->prev;
 	ft_putstr_fd("rra\n", 1);
+	number_of_ops('a');
 }
 
 void rev_rotate_b(t_dcll **stack_b)
 {
 	*stack_b = (*stack_b)->next;
 	ft_putstr_fd("rrb\n", 1);
+	number_of_ops('a');
 }
 
 void rotate_ab(t_dcll **stack_a, t_dcll **stack_b)
@@ -95,6 +101,7 @@ void rotate_ab(t_dcll **stack_a, t_dcll **stack_b)
 	*stack_a = (*stack_a)->next;
 	*stack_b = (*stack_b)->next;
 	ft_putstr_fd("rr\n", 1);
+	number_of_ops('a');
 }
 
 void rev_rotate_ab(t_dcll **stack_a, t_dcll **stack_b)
@@ -102,6 +109,7 @@ void rev_rotate_ab(t_dcll **stack_a, t_dcll **stack_b)
 	*stack_a = (*stack_a)->prev;
 	*stack_b = (*stack_b)->prev;
 	ft_putstr_fd("rrr\n", 1);
+	number_of_ops('a');
 }
 
 void swap_a(t_dcll **stack_a)
@@ -113,6 +121,7 @@ void swap_a(t_dcll **stack_a)
 	(*stack_a)->index = (*stack_a)->next->index;
 	(*stack_a)->next->index = temp;
 	ft_putstr_fd("sa\n", 1);
+	number_of_ops('a');
 }
 
 void swap_b(t_dcll **stack_b)
@@ -124,6 +133,7 @@ void swap_b(t_dcll **stack_b)
 	(*stack_b)->index = (*stack_b)->next->index;
 	(*stack_b)->next->index = temp;
 	ft_putstr_fd("sb\n", 1);
+	number_of_ops('a');
 }
 
 void swap_ab(t_dcll **stack_a, t_dcll **stack_b)
@@ -142,6 +152,7 @@ void swap_ab(t_dcll **stack_a, t_dcll **stack_b)
 	(*stack_b)->index = (*stack_b)->next->index;
 	(*stack_b)->next->index = temp;
 	ft_putstr_fd("ss\n", 1);
+	number_of_ops('a');
 }
 
 float disorder(t_dcll **stack_a)

@@ -51,7 +51,7 @@ void min_max_extraction(t_dcll **stack_a, t_dcll **stack_b)
 	while (1)
 	{
 		if (tmp_a->index != i)
-			rev_rotate_a(&tmp_a);
+			rotate_a(&tmp_a);
 		else
 		{
 			push_b(&tmp_a, &tmp_b);
