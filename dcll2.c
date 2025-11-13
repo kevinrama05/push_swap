@@ -91,7 +91,7 @@ void rev_rotate_a(t_dcll **stack_a)
 
 void rev_rotate_b(t_dcll **stack_b)
 {
-	*stack_b = (*stack_b)->next;
+	*stack_b = (*stack_b)->prev;
 	ft_putstr_fd("rrb\n", 1);
 	number_of_ops('a');
 }

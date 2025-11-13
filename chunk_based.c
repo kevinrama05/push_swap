@@ -3,17 +3,26 @@
 /*                                                        :::      ::::::::   */
 /*   chunk_based.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kerama <kerama@student.42.fr>              +#+  +:+       +#+        */
+/*   By: ekrama10 <ekrama10@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/11 11:27:26 by kerama            #+#    #+#             */
-/*   Updated: 2025/11/13 11:52:35 by ekrama10         ###   ########.fr       */
+/*   Updated: 2025/11/13 13:51:10 by ekrama10         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdlib.h>
 #include "push_swap.h"
 #include "libft/libft.h"
+#include <stdio.h>
+#include <unistd.h>
 
+void	print_stacks(t_dcll **a, t_dcll **b)
+{
+	(void)a;
+	(void)b;
+	printf("----");
+	sleep(2);
+}
 
 static int isqrt(int n)
 {
@@ -41,7 +50,7 @@ static int isqrt(int n)
 int list_size(t_dcll *stack)
 {
 	int i = 0;
-	if (*stack == NULL)
+	if (!stack)
 		return i;
 	t_dcll *temp = stack;
 	while (1)
@@ -55,27 +64,33 @@ int list_size(t_dcll *stack)
 
 void push_chunk(t_dcll **stack_a, t_dcll **stack_b, int min, int max)
 {
-	t_dcll *tmp_a = *stack_a;
-	t_dcll *tmp_b = *stack_b;
-	while (list_size(*stack_b) != max - min + 1)
+	int chunk_size = max - min + 1;
+	int i = 0;
+	while (i != chunk_size)
 	{
-		if (max >= tmp_a->index && tmp_a->index >= min)
+		if (max >= (*stack_a)->index && (*stack_a)->index >= min)
 		{
-			if (tmp_a->index > tmp_b->index)
-				push_b(stack_a, stack_b);
-			else if (tmp_a->index < tmp_b->index && tmp_a->index > tmp_b->next->index)
+			if ((*stack_a)->index > (*stack_b)->index)
+			{push_b(stack_a, stack_b);print_stacks(stack_a, stack_b);}
+			else if ((*stack_a)->index < (*stack_b)->index && (*stack_a)->index > (*stack_b)->next->index)
 			{
+				print_stacks(stack_a, stack_b);
 				push_b(stack_a, stack_b);
+				print_stacks(stack_a, stack_b);
 				swap_b(stack_b);
 			}
 			else
 			{
+				print_stacks(stack_a, stack_b);
 				push_b(stack_a, stack_b);
+				print_stacks(stack_a, stack_b);
 				rev_rotate_b(stack_b);
 			}
+			i++;
 		}
 		else
-			rev_rotate_a(stack_a);
+		{	print_stacks(stack_a, stack_b);
+			rev_rotate_a(stack_a);}
 	}
 }
 
@@ -91,8 +106,6 @@ void new_chunk(int *min, int *max, int chunk)
 
 void chunk_based_sort(t_dcll **stack_a, t_dcll **stack_b, int size)
 {
-	t_dcll *tmp_a = *stack_a;
-	t_dcll *tmp_b = *stack_b;
 	int chunk = isqrt(size);
 	if (chunk < 5)
 		chunk = 5;
@@ -104,33 +117,41 @@ void chunk_based_sort(t_dcll **stack_a, t_dcll **stack_b, int size)
 		min = 0;
 	while (1)
 	{
-		push_chunk(&tmp_a, &tmp_b, min, max);
+		push_chunk(stack_a, stack_b, min, max);
 		if (min != size)
-			while (tmp_a->index != max + 1)
-				rotate_a(&tmp_a);
-		push_a(&tmp_b, &tmp_a);
-		while (tmp_b != NULL)
+			while ((*stack_a)->index != max + 1)
+			{rotate_a(stack_a);print_stacks(stack_a, stack_b);}
+		print_stacks(stack_a, stack_b);
+		push_a(stack_b, stack_a);
+		while (stack_b != NULL)
 		{
-			if (tmp_b->index == tmp_a->index - 1)
-				push_a(&tmp_b, &tmp_a);
-			else if (tmp_b->next->index == tmp_a->index - 1)
+			if ((*stack_b)->index == (*stack_a)->index - 1)
+			{push_a(stack_b, stack_a);print_stacks(stack_a, stack_b);}
+			else if ((*stack_b)->next->index == (*stack_a)->index - 1)
 			{
-				swap_b(&tmp_b);
-				push_b(&tmp_b, &tmp_a);
+				print_stacks(stack_a, stack_b);
+				swap_b(stack_b);
+				print_stacks(stack_a, stack_b);
+				push_b(stack_b, stack_a);
 			}
-			else if (tmp_b->prev->index == tmp_a->index - 1)
+			else if ((*stack_b)->prev->index == (*stack_a)->index - 1)
 			{
-				rev_rotate_b(&tmp_b);
-				push_b(&tmp_b, &tmp_a);
+				print_stacks(stack_a, stack_b);
+				rev_rotate_b(stack_b);
+				print_stacks(stack_a, stack_b);
+				push_b(stack_b, stack_a);
 			}
-			else if (tmp_b->prev->prev->index == tmp_a->index - 1)
+			else if ((*stack_b)->prev->prev->index == (*stack_a)->index - 1)
 			{
-				rev_rotate_b(&tmp_b);
-				rev_rotate_b(&tmp_b);
-				push_b(&tmp_b, &tmp_a);
+				print_stacks(stack_a, stack_b);
+				rev_rotate_b(stack_b);
+				print_stacks(stack_a, stack_b);
+				rev_rotate_b(stack_b);
+				print_stacks(stack_a, stack_b);
+				push_b(stack_b, stack_a);
 			}
 			else
-				rotate_b(&tmp_b);
+			{rotate_b(stack_b);print_stacks(stack_a, stack_b);}
 		
 		}
 		new_chunk(&min, &max, chunk);
