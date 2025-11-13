@@ -6,7 +6,7 @@
 /*   By: kerama <kerama@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/31 08:46:04 by kerama            #+#    #+#             */
-/*   Updated: 2025/11/12 09:28:18 by kerama           ###   ########.fr       */
+/*   Updated: 2025/11/13 11:36:14 by ekrama10         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,6 +66,7 @@ float disorder(t_dcll **stack_a);
 void min_max_extraction(t_dcll **stack_a, t_dcll **stack_b);
 int check_if_sorted(t_dcll *stack);
 int check_if_sorted_dec(t_dcll *stack);
+int check_if_sorted_asc(t_dcll *stack);
 void number_of_ops(char p);
-
+void chunk_based_sort(t_dcll **stack_a, t_dcll **stack_b, int size); 
 #endif
