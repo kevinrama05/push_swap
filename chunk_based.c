@@ -6,7 +6,7 @@
 /*   By: kerama <kerama@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/11 11:27:26 by kerama            #+#    #+#             */
-/*   Updated: 2025/11/13 11:37:54 by ekrama10         ###   ########.fr       */
+/*   Updated: 2025/11/13 11:52:35 by ekrama10         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,8 @@ static int isqrt(int n)
 int list_size(t_dcll *stack)
 {
 	int i = 0;
+	if (*stack == NULL)
+		return i;
 	t_dcll *temp = stack;
 	while (1)
 	{
