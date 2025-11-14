@@ -139,7 +139,7 @@ int main(int argc, char **argv)
     	ft_putstr_fd("Error\n", 1);
 	return 0;
     }
-    float disorder_value = disorder(&stack_a);
+//    float disorder_value = disorder(&stack_a);
     t_dcll *copy_a = copy_list(stack_a);
     copy_a = sort_doubly_circular(copy_a);
     if (check_if_no_dup(copy_a) == 0)
@@ -164,8 +164,8 @@ int main(int argc, char **argv)
             break;
     }
     t_dcll *stack_b = NULL;
-    printf("Disorder: %.2f%%\n\n", disorder_value * 100);
-    print_list(stack_a);
+//    printf("Disorder: %.2f%%\n\n", disorder_value * 100);
+//    print_list(stack_a);
     chunk_based_sort(&stack_a, &stack_b, (int)size);
     free_dcll(stack_a);
     free_dcll(copy_a);

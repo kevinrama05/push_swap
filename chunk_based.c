@@ -6,7 +6,7 @@
 /*   By: ekrama10 <ekrama10@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/11 11:27:26 by kerama            #+#    #+#             */
-/*   Updated: 2025/11/13 13:51:10 by ekrama10         ###   ########.fr       */
+/*   Updated: 2025/11/14 13:41:13 by ekrama10         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,7 +72,7 @@ void push_chunk(t_dcll **stack_a, t_dcll **stack_b, int min, int max)
 		{
 			if (!*stack_b)
 				push_b(stack_a, stack_b);
-			if ((*stack_a)->index > (*stack_b)->index)
+			else if ((*stack_a)->index > (*stack_b)->index)
 				push_b(stack_a, stack_b);
 			else if ((*stack_a)->index < (*stack_b)->index && (*stack_a)->index > (*stack_b)->next->index)
 			{
@@ -122,25 +122,25 @@ void chunk_based_sort(t_dcll **stack_a, t_dcll **stack_b, int size)
 				rotate_a(stack_a);
 		}
 		push_a(stack_b, stack_a);
-		while (stack_b != NULL)
+		while (*stack_b)
 		{
 			if ((*stack_b)->index == (*stack_a)->index - 1)
 				push_a(stack_b, stack_a);
 			else if ((*stack_b)->next->index == (*stack_a)->index - 1)
 			{
 				swap_b(stack_b);
-				push_b(stack_b, stack_a);
+				push_a(stack_b, stack_a);
 			}
 			else if ((*stack_b)->prev->index == (*stack_a)->index - 1)
 			{
 				rev_rotate_b(stack_b);
-				push_b(stack_b, stack_a);
+				push_a(stack_b, stack_a);
 			}
 			else if ((*stack_b)->prev->prev->index == (*stack_a)->index - 1)
 			{
 				rev_rotate_b(stack_b);
 				rev_rotate_b(stack_b);
-				push_b(stack_b, stack_a);
+				push_a(stack_b, stack_a);
 			}
 			else
 				rotate_b(stack_b);
