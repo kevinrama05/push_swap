@@ -13,6 +13,7 @@
 #include "libft/libft.h"
 #include <stdio.h>
 #include <limits.h>
+#include <unistd.h>
 
 int	is_num(char *nptr)
 {
@@ -41,4 +42,5 @@ void number_of_ops(char p)
 	ops++;
 	if (p == 'p')
 		ft_putnbr_fd(ops, 1);
+	usleep(10000);
 }
