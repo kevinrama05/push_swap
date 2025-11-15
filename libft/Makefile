@@ -56,6 +56,7 @@ SRC			= ft_atoi.c \
 			  ../dcll2.c \
 			  ../min_max_extraction.c \
 			  ../chunk_based.c \
+			  ../radix_sort.c \
 
 OBJ			= $(SRC:.c=.o)
 
