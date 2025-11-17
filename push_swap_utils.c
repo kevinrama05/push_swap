@@ -42,5 +42,5 @@ void number_of_ops(char p)
 	ops++;
 	if (p == 'p')
 		ft_putnbr_fd(ops, 1);
-//	usleep(50000);
+//	usleep(10000);
 }
