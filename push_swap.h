@@ -6,7 +6,7 @@
 /*   By: kerama <kerama@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/31 08:46:04 by kerama            #+#    #+#             */
-/*   Updated: 2025/11/15 13:19:13 by kerama           ###   ########.fr       */
+/*   Updated: 2025/11/17 17:54:35 by kerama           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,4 +70,14 @@ int check_if_sorted_asc(t_dcll *stack);
 void number_of_ops(char p);
 void chunk_based_sort(t_dcll **stack_a, t_dcll **stack_b, int size); 
 void radix_sort(t_dcll **stack_a, t_dcll **stack_b, int size);
+int c(char *s1, char *s2);
+typedef struct s_flags
+{
+    int simple;
+    int medium;
+    int complex;
+    int adaptive;
+    int bench;
+}   t_flags;
+void init_flags(t_flags *f);
 #endif

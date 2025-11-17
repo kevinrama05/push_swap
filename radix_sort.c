@@ -43,7 +43,7 @@ void push_zeros(t_dcll **stack_a, t_dcll **stack_b, int k, int n)
 	int i = 0;
 	while (i < n)
 	{
-		if (((q*stack_a)->index >> k) == 0)
+		if (((*stack_a)->index >> k) == 0)
 			push_b(stack_a, stack_b);
 		else
 			rotate_a(stack_a);
@@ -52,33 +52,7 @@ void push_zeros(t_dcll **stack_a, t_dcll **stack_b, int k, int n)
 	while (*stack_b)
 		push_a(stack_b, stack_a);
 }
-/*
-void push_ones(t_dcll **stack_a, t_dcll **stack_b, int k, int n)
-{
-	int i = 0;
-	int push = 0;
-	while (i < n)
-	{
-		if ((((*stack_a)->index >> k) & 1) == 1)
-		{
-			push_b(stack_a, stack_b);
-			i++;
-		}
-		else
-			rotate_a(stack_a);
-	}
-	while (*stack_b)
-	{	
-		push_a(stack_b, stack_a);
-		push++;
-	}
-	while (push != 0)
-	{
-		rotate_a(stack_a);
-		push--;;
-	}
-}
-*/
+
 int list_size(t_dcll *a)
 {
 	int i = 0;
@@ -94,60 +68,24 @@ int list_size(t_dcll *a)
 }
 void radix_sort(t_dcll **stack_a, t_dcll **stack_b, int size)
 {
-	int num_of_zeros;
 	int i = 0;
 	int loops = binary_digits(size - 1);
-	
+	int j = 0;
 	while (i < loops)
 	{
-		num_of_zeros = count_zero_bits(size - 1, i); 
-//		if (num_of_zeros >= size - 1 - num_of_zeros)
-			push_zeros(stack_a, stack_b, i, num_of_zeros);
-//		else
-//			push_ones(stack_a, stack_b, i, size - num_of_zeros);
-		i++;
-	}
-}
-
-
-/*
-void push_ones(t_dcll **stack_a, t_dcll **stack_b, int k, int n)
-{
-	int i = 0;
-	int push = 0;
-	while (i < n)
-	{
-		if ((((*stack_a)->index >> k) & 1) == 1)
+		while (j < size)
 		{
-			push_b(stack_a, stack_b);
-			i++;
+			if ((((*stack_a)->index >> i) & 1) == 0)
+				push_b(stack_a, stack_b);
+			else
+				rotate_a(stack_a);
+			j++;
 		}
-		else
-			rotate_a(stack_a);
-	}
-	while (*stack_b)
-	{	
-		push_a(stack_b, stack_a);
-		push++;
-	}
-	while (push != 0)
-	{
-		rotate_a(stack_a);
-		push--;;
-	}
-}
-
-void radix_sort(t_dcll **stack_a, t_dcll **stack_b, int size)
-{
-	int num_of_zeros;
-	int i = 0;
-	int loops = binary_digits(size - 1);
-	printf("Binary digits: %d\n", loops);
-	while (i < loops)
-	{
-		num_of_zeros = count_zero_bits(size - 1, i);
-		push_zeros(stack_a, stack_b, i, num_of_zeros);
+		while (*stack_b)
+			push_a(stack_b, stack_a);
+		if (check_if_sorted_asc(*stack_a))
+			break;
+		j = 0;
 		i++;
 	}
 }
-*/
