@@ -6,7 +6,7 @@
 /*   By: kerama <kerama@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/31 08:46:04 by kerama            #+#    #+#             */
-/*   Updated: 2025/11/17 17:54:35 by kerama           ###   ########.fr       */
+/*   Updated: 2025/11/18 14:13:31 by kerama           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,4 +80,6 @@ typedef struct s_flags
     int bench;
 }   t_flags;
 void init_flags(t_flags *f);
+int	check_sort_args(t_flags flags);
+int list_size(t_dcll *a);
 #endif

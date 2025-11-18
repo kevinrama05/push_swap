@@ -56,6 +56,8 @@ void push_zeros(t_dcll **stack_a, t_dcll **stack_b, int k, int n)
 int list_size(t_dcll *a)
 {
 	int i = 0;
+	if (!a)
+		return i;
 	t_dcll *temp = a;
 	while (1)
 	{

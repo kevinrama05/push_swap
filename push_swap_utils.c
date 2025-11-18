@@ -6,7 +6,7 @@
 /*   By: kerama <kerama@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/05 14:28:38 by kerama            #+#    #+#             */
-/*   Updated: 2025/11/17 19:03:45 by kerama           ###   ########.fr       */
+/*   Updated: 2025/11/18 09:45:06 by kerama           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,6 +70,9 @@ void	check_flags(char **flag, t_flags *args)
 	else if (c(flag, "--simple") == 0)
 		args->simple++;
 	else if (c(flag, "--medium") == 0)
-		args->medium;
-	else if ()
+		args->medium++;
+	else if (c(flag, "--complex") == 0)
+		args->complex++;
+	else if (c(flag, "--adaptive") == 0)
+		args->adaptive++;
 }
