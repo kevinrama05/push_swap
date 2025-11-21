@@ -114,14 +114,17 @@ void    ht_set_hashtable(ht_t **hashtable, t_dcll *a, int size)
     }
 }
 
-void    ht_fix_stack_a(ht_t *hashtable, t_dcll **a)
+void    ht_fix_stack_a(ht_t *hashtable, t_dcll **a, int size)
 {
     t_dcll  *t;
 
     t = *a;
     while (1)
     {
-        t->index = ht_get(hashtable, )
+        t->index = ht_get(hashtable, t->data, (size_t)size);
+        t = t->next;
+        if (t == *a)
+            break;
     }
 }
 
@@ -135,14 +138,22 @@ void    sort_stack(int argc, char **argv, t_flags flags)
 
     args_count = count_args(flags);
     stack_a = create_stack_a(argv + args_count);
-    if (!stack_a)
-        exit_program();
     copy_a = sort_doubly_circular(stack_a);
     if (check_if_no_dup(copy_a) == 0)
         exit_program();
     hashtable = ht_create(argc - args_count);
     ht_set_hashtable(&hashtable, copy_a, argc - args_count);
-    ht_fix_stack_a(hashtable, &stack_a);
+    ht_fix_stack_a(hashtable, &stack_a, argc - args_count);
+    if (flags.bench == 1)
+        bench_handle(&stack_a, &stack_b, argc - args_count);
+    if (flags.adaptive == 1)
+        adaptive_sort(&stack_a, &stack_b, argc - args_count);
+    else if (flags.simple == 1)
+        min_max_extraction(&stack_a, &stack_b);
+    else if (flags.medium == 1)
+        chunk_based_sort(&stack_a, &stack_b, argc - args_count);
+    else if (flags.complex == 1)
+        radix_sort(&stack_a, &stack_b, argc - args_count);
 }
 
 int	main(int argc, char **argv)

@@ -1,12 +1,11 @@
-/* ************************************************************************** */
-/*                                                                            */
+/* ************************************************************************** */ /*                                                                            */
 /*                                                        :::      ::::::::   */
 /*   push_swap.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kerama <kerama@student.42.fr>              +#+  +:+       +#+        */
+/*   By: ekrama10 <ekrama10@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/31 08:46:04 by kerama            #+#    #+#             */
-/*   Updated: 2025/11/18 14:13:31 by kerama           ###   ########.fr       */
+/*   Updated: 2025/11/20 13:51:32 by ekrama10         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,4 +81,18 @@ typedef struct s_flags
 void init_flags(t_flags *f);
 int	check_sort_args(t_flags flags);
 int list_size(t_dcll *a);
+typedef struct s_opscount
+{
+    int sa;
+    int sb;
+    int ss;
+    int ra;
+    int rb;
+    int rr;
+    int rra;
+    int rrb;
+    int rrr;
+    int pb;
+    int pa;
+} t_opscount;
 #endif

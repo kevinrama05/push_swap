@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse_args.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kerama <kerama@student.42.fr>              +#+  +:+       +#+        */
+/*   By: ekrama10 <ekrama10@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/02 10:59:54 by kerama            #+#    #+#             */
-/*   Updated: 2025/11/09 13:14:46 by kerama           ###   ########.fr       */
+/*   Updated: 2025/11/20 13:13:08 by ekrama10         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,8 @@ t_dcll	*create_stack_a(char **args)
 		if (!is_num(args[i]))
 		{
 			free_dcll(stack_a);
-			return (NULL);
+			stack_a = NULL;
+			break ;
 		}
 		value = ft_atoi(args[i]);
 		if (!stack_a)
@@ -64,6 +65,8 @@ t_dcll	*create_stack_a(char **args)
 			add_back(&stack_a, value, i - 1);
 		i++;
 	}
+	if (!stack_a)
+		exit_program();
 	return (stack_a);
 }
 

@@ -27,3 +27,28 @@ int	count_args(t_flags a)
 	i = a.adaptive + a.bench + a.complex + a.medium + a.simple;
 	return (i); 
 }
+
+void write_two_decimals(double x)
+{
+    int int_part = (int)x;
+    int dec_part = (int)((x - int_part) * 100 + 0.5);
+
+    ft_putnbr_fd(int_part, 2);
+    ft_putchar_fd('.', 2);
+    if (dec_part < 10)
+        ft_putchar_fd('0', 2);
+    ft_putnbt_fd(dec_part, 2);
+}
+
+void adaptive_sort(t_dcll **stack_a, t_dcll **stack_b, int size)
+{
+	float disorder_num;
+
+	disorder_num = disorder(stack_a);
+	if (disorder_num <= 0.2)
+		min_max_extraction(stack_a, stack_b);
+	else if (disorder_num <= 0.5)
+		chunk_based_sort(stack_a, stack_b, size);
+	else
+		radix_sort(stack_a, stack_b, size);
+}
