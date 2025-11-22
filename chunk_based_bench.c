@@ -16,35 +16,27 @@
 #include <stdio.h>
 #include <unistd.h>
 
-void	print_stacks(t_dcll **a, t_dcll **b)
-{
-	(void)a;
-	(void)b;
-	printf("----");
-	sleep(2);
-}
-
 static int isqrt(int n)
 {
-	int guess;
-	int prev;
+    int guess;
+    int prev;
 
-	if (n < 0)
-		return -1;
-	if (n == 0 || n == 1)
-		return n;
+    if (n < 0)
+        return -1;
+    if (n == 0 || n == 1)
+        return n;
 
-	guess = n / 2;
-	prev = 0;
-	while (guess != prev)
-	{
-		prev = guess;
-		guess = (guess + n / guess) / 2;
-	}
-	if (guess * guess > n)
-		guess--;
+    guess = n / 2;
+    prev = 0;
+    while (guess != prev)
+    {
+        prev = guess;
+        guess = (guess + n / guess) / 2;
+    }
+    if (guess * guess > n)
+        guess--;
 
-	return guess;
+    return guess;
 }
 
 int list_size(t_dcll *stack)
@@ -62,7 +54,7 @@ int list_size(t_dcll *stack)
 	}
 }
 
-void push_chunk(t_dcll **stack_a, t_dcll **stack_b, int min, int max)
+void push_chunk_bench(t_dcll **stack_a, t_dcll **stack_b, int min, int max, t_ops *o)
 {
 	int chunk_size = max - min + 1;
 	int i = 0;
@@ -71,23 +63,23 @@ void push_chunk(t_dcll **stack_a, t_dcll **stack_b, int min, int max)
 		if ((*stack_a)->index >= min && (*stack_a)->index <= max)
 		{
 			if (!*stack_b)
-				push_b(stack_a, stack_b);
+				push_b_bench(stack_a, stack_b, o);
 			else if ((*stack_a)->index > (*stack_b)->index)
-				push_b(stack_a, stack_b);
+				push_b_bench(stack_a, stack_b, o);
 			else if ((*stack_a)->index < (*stack_b)->index && (*stack_a)->index > (*stack_b)->next->index)
 			{
-				push_b(stack_a, stack_b);
-				swap_b(stack_b);
+				push_b_bench(stack_a, stack_b, o);
+				swap_b_bench(stack_b, o);
 			}
 			else
 			{
-				push_b(stack_a, stack_b);
-				rotate_b(stack_b);
+				push_b_bench(stack_a, stack_b, o);
+				rotate_b_bench(stack_b, o);
 			}
 			i++;
 		}
 		else
-			rev_rotate_a(stack_a);
+			rev_rotate_a_bench(stack_a, o);
 	}
 }
 
@@ -101,7 +93,7 @@ void new_chunk(int *min, int *max, int chunk)
 		*min = 0;
 }
 
-void chunk_based_sort(t_dcll **stack_a, t_dcll **stack_b, int size)
+void chunk_based_sort_bench(t_dcll **stack_a, t_dcll **stack_b, int size, t_ops *o)
 {
 	int chunk = isqrt(size);
 	if (chunk < 5)
@@ -115,36 +107,35 @@ void chunk_based_sort(t_dcll **stack_a, t_dcll **stack_b, int size)
 	int first_chunk = 1;
 	while (1)
 	{
-		push_chunk(stack_a, stack_b, min, max);
+		push_chunk_bench(stack_a, stack_b, min, max, o);
 		if (first_chunk == 0)
 		{
 			while ((*stack_a)->index != max + 1)
-				rotate_a(stack_a);
+				rotate_a_bench(stack_a, o);
 		}
-		push_a(stack_b, stack_a);
+		push_a_bench(stack_b, stack_a, o);
 		while (*stack_b)
 		{
 			if ((*stack_b)->index == (*stack_a)->index - 1)
-				push_a(stack_b, stack_a);
+				push_a_bench(stack_b, stack_a, o);
 			else if ((*stack_b)->next->index == (*stack_a)->index - 1)
 			{
-				swap_b(stack_b);
-				push_a(stack_b, stack_a);
+				swap_b_bench(stack_b, o);
+				push_a_bench(stack_b, stack_a, o);
 			}
 			else if ((*stack_b)->prev->index == (*stack_a)->index - 1)
 			{
-				rev_rotate_b(stack_b);
-				push_a(stack_b, stack_a);
+				rev_rotate_b_bench(stack_b, o);
+				push_a_bench(stack_b, stack_a, o);
 			}
 			else if ((*stack_b)->prev->prev->index == (*stack_a)->index - 1)
 			{
-				rev_rotate_b(stack_b);
-				rev_rotate_b(stack_b);
-				push_a(stack_b, stack_a);
+				rev_rotate_b_bench(stack_b, o);
+				rev_rotate_b_bench(stack_b, o);
+				push_a_bench(stack_b, stack_a, o);
 			}
 			else
-				rotate_b(stack_b);
-		
+				rotate_b_bench(stack_b, o);
 		}
 		first_chunk = 0;
 		new_chunk(&min, &max, chunk);
@@ -152,4 +143,3 @@ void chunk_based_sort(t_dcll **stack_a, t_dcll **stack_b, int size)
 			break;
 	}
 }
-

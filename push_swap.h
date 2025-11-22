@@ -81,7 +81,7 @@ typedef struct s_flags
 void init_flags(t_flags *f);
 int	check_sort_args(t_flags flags);
 int list_size(t_dcll *a);
-typedef struct s_opscount
+typedef struct s_ops
 {
     int sa;
     int sb;
@@ -94,5 +94,6 @@ typedef struct s_opscount
     int rrr;
     int pb;
     int pa;
-} t_opscount;
+} t_ops;
+void count_ops(char *op, t_ops *o);
 #endif
