@@ -1,4 +1,5 @@
 #include "push_swap.h"
+#include "libft/libft.h"
 
 void push_b_bench(t_dcll **stack_a, t_dcll **stack_b, t_ops *o)
 {
@@ -116,11 +117,97 @@ void init_ops(t_ops *o)
 	o->rrb = 0;
 	o->rrr = 0;
 }
+void count_ops(char *ops, t_ops *o)
+{
+	if (c(ops, "sa") == 0)
+		o->sa++;
+	else if (c(ops, "sb") == 0)
+		o->sb++;
+	else if (c(ops, "ss") == 0)
+		o->ss++;
+	else if (c(ops, "pa") == 0)
+		o->pa++;
+	else if (c(ops, "pb") == 0)
+		o->pb++;
+	else if (c(ops, "ra") == 0)
+		o->ra++;
+	else if (c(ops, "rb") == 0)
+		o->rb++;
+	else if (c(ops, "rr") == 0)
+		o->rr++;
+	else if (c(ops, "rra") == 0)
+		o->rra++;
+	else if (c(ops, "rrb") == 0)
+		o->rrb++;
+	else if (c(ops, "rrr") == 0)
+		o->rrr++;	
+}
+
+char *flag_str(t_flags flag)
+{
+	if (flag.adaptive)
+		return ("Adaptive");
+	else if (flag.simple)
+		return ("Simple");
+	else if (flag.medium)
+		return ("Medium");
+	else
+		return ("Complex");
+}
+
+char *complexity(t_flags flag, double disorder)
+{
+	if (flag.complex)
+		return ("O(n log n)");
+	else if (flag.medium)
+		return ("O(n√n)");
+	else if (flag.simple)
+		return ("O(n²)");
+	else
+	{
+		if (disorder <= 0.2)
+			return ("O(n²)");
+		else if (disorder <= 0.5)
+			return ("O(n√n)");
+		else
+			return ("O(n log n)");
+	}
+}
+
+int total_ops(t_ops o)
+{
+	int	i;
+
+	i = 0;
+	i += o.sa;
+	i += o.sb;
+	i += o.ss;
+	i += o.pa;
+	i += o.pb;
+	i += o.ra;
+	i += o.rb;
+	i += o.rr;
+	i += o.rra;
+	i += o.rrb;
+	i += o.rrr;
+	return (i);
+}
 
 void bench_handle(t_dcll *a, t_dcll *b, int size, t_flags flag)
 {
 	t_ops o;
 	init_ops(&o);
 	if (flag.adaptive)
-		adaptive_sort_bench(a, b, size, &o);
+		adaptive_sort_bench(&a, &b, size, &o);
+	else if (flag.simple)
+		min_max_extraction_bench(&a, &b, &o);
+	else if (flag.medium)
+		chunk_based_sort_bench(&a, &b, size, &o);
+	else if (flag.complex)
+		radix_sort_bench(&a, &b, size, &o);
+	ft_printf("[bench] disorder: %f%%\n", disorder(&a));
+	ft_printf("[bench] strategy: %s / %s\n", flag_str(flag), complexity(flag, disorder(&a)));
+	ft_printf("[bench] total_ops: %i\n", total_ops(o));
+	ft_printf("[bench] sa: %i sb: %i ss: %i pa: %i pb: %i\n", o.sa, o.sb, o.ss, o.pa, o.pb);
+	ft_printf("[bench] ra: %i rb: %i rr: %i rra: %i rrb: %i rrr: %i\n", o.ra, o.rb, o.rr, o.rra, o.rrb, o.rrr);
 }

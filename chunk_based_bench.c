@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   chunk_based.c                                      :+:      :+:    :+:   */
+/*   chunk_based_bench.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ekrama10 <ekrama10@student.42.fr>          +#+  +:+       +#+        */
+/*   By: kerama <kerama@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/11 11:27:26 by kerama            #+#    #+#             */
-/*   Updated: 2025/11/14 13:41:13 by ekrama10         ###   ########.fr       */
+/*   Updated: 2025/11/23 12:06:30 by kerama           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@
 static int isqrt(int n)
 {
     int guess;
-    int prev;
+    int next;
 
     if (n < 0)
         return -1;
@@ -27,17 +27,20 @@ static int isqrt(int n)
         return n;
 
     guess = n / 2;
-    prev = 0;
-    while (guess != prev)
+
+    while (1)
     {
-        prev = guess;
-        guess = (guess + n / guess) / 2;
+        next = (guess + n / guess) / 2;
+
+        if (next >= guess)    // convergence guaranteed
+            break;
+
+        guess = next;
     }
-    if (guess * guess > n)
-        guess--;
 
     return guess;
 }
+
 
 int list_size(t_dcll *stack)
 {

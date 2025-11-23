@@ -1,0 +1,68 @@
+hello
+Run till exit from #0  push_a (stack_b=0x7fffffffd4a8, stack_a=0x7fffffffd4b0) at ../dcll2.c:64
+0x0000000000401b43 in chunk_based_sort (stack_a=0x7fffffffd4b0, stack_b=0x7fffffffd4a8, size=8) at ../chunk_based.c:97
+push_a (stack_b=0x7fffffffd4a8, stack_a=0x7fffffffd4b0) at ../dcll2.c:64
+Undefined command: "finissh".  Try "help".
+Run till exit from #0  push_a (stack_b=0x7fffffffd4a8, stack_a=0x7fffffffd4b0) at ../dcll2.c:64
+0x0000000000401b43 in chunk_based_sort (stack_a=0x7fffffffd4b0, stack_b=0x7fffffffd4a8, size=8) at ../chunk_based.c:97
+push_a (stack_b=0x7fffffffd4a8, stack_a=0x7fffffffd4b0) at ../dcll2.c:64
+#0  push_a (stack_b=0x7fffffffd4a8, stack_a=0x7fffffffd4b0) at ../dcll2.c:64
+0x0000000000401b43 in chunk_based_sort (stack_a=0x7fffffffd4b0, stack_b=0x7fffffffd4a8, size=8) at ../chunk_based.c:97
+new_chunk (min=0x7fffffffd430, max=0x7fffffffd434, chunk=5) at ../chunk_based_bench.c:91
+#0  new_chunk (min=0x7fffffffd430, max=0x7fffffffd434, chunk=5) at ../chunk_based_bench.c:91
+chunk_based_sort (stack_a=0x7fffffffd4b0, stack_b=0x7fffffffd4a8, size=8) at ../chunk_based.c:120
+push_chunk (stack_a=0x7fffffffd4b0, stack_b=0x7fffffffd4a8, min=0, max=2) at ../chunk_based.c:46
+rev_rotate_a (stack_a=0x7fffffffd4b0) at ../dcll2.c:83
+#0  rev_rotate_a (stack_a=0x7fffffffd4b0) at ../dcll2.c:83
+push_chunk (stack_a=0x7fffffffd4b0, stack_b=0x7fffffffd4a8, min=0, max=2) at ../chunk_based.c:48
+push_b (stack_a=0x7fffffffd4b0, stack_b=0x7fffffffd4a8) at ../dcll2.c:57
+#0  push_b (stack_a=0x7fffffffd4b0, stack_b=0x7fffffffd4a8) at ../dcll2.c:57
+0x0000000000401988 in push_chunk (stack_a=0x7fffffffd4b0, stack_b=0x7fffffffd4a8, min=0, max=2) at ../chunk_based.c:53
+rev_rotate_a (stack_a=0x7fffffffd4b0) at ../dcll2.c:83
+#0  rev_rotate_a (stack_a=0x7fffffffd4b0) at ../dcll2.c:83
+push_chunk (stack_a=0x7fffffffd4b0, stack_b=0x7fffffffd4a8, min=0, max=2) at ../chunk_based.c:48
+push_b (stack_a=0x7fffffffd4b0, stack_b=0x7fffffffd4a8) at ../dcll2.c:57
+#0  push_b (stack_a=0x7fffffffd4b0, stack_b=0x7fffffffd4a8) at ../dcll2.c:57
+push_chunk (stack_a=0x7fffffffd4b0, stack_b=0x7fffffffd4a8, min=0, max=2) at ../chunk_based.c:64
+rotate_b (stack_b=0x7fffffffd4a8) at ../dcll2.c:77
+#0  rotate_b (stack_b=0x7fffffffd4a8) at ../dcll2.c:77
+push_chunk (stack_a=0x7fffffffd4b0, stack_b=0x7fffffffd4a8, min=0, max=2) at ../chunk_based.c:66
+rev_rotate_a (stack_a=0x7fffffffd4b0) at ../dcll2.c:83
+#0  rev_rotate_a (stack_a=0x7fffffffd4b0) at ../dcll2.c:83
+push_chunk (stack_a=0x7fffffffd4b0, stack_b=0x7fffffffd4a8, min=0, max=2) at ../chunk_based.c:48
+rev_rotate_a (stack_a=0x7fffffffd4b0) at ../dcll2.c:83
+#0  rev_rotate_a (stack_a=0x7fffffffd4b0) at ../dcll2.c:83
+push_chunk (stack_a=0x7fffffffd4b0, stack_b=0x7fffffffd4a8, min=0, max=2) at ../chunk_based.c:48
+rev_rotate_a (stack_a=0x7fffffffd4b0) at ../dcll2.c:83
+#0  rev_rotate_a (stack_a=0x7fffffffd4b0) at ../dcll2.c:83
+push_chunk (stack_a=0x7fffffffd4b0, stack_b=0x7fffffffd4a8, min=0, max=2) at ../chunk_based.c:48
+rev_rotate_a (stack_a=0x7fffffffd4b0) at ../dcll2.c:83
+ft_putstr_fd (s=0x4054b8 "rra\n", fd=1) at ft_putstr_fd.c:22
+__GI___libc_write (fd=1, buf=0x4054b8, nbytes=4) at ../sysdeps/unix/sysv/linux/write.c:25
+Downloading 1.19 K source file /usr/src/debug/glibc-2.41-11.fc42.x86_64/io/../sysdeps/unix/sysv/linux/write.c
+[#########################################################################################################################################################################################################################################################################] 100% (1.19 K)                                                                                                                                                                                                                                                                                           #0  __GI___libc_write (fd=1, buf=0x4054b8, nbytes=4) at ../sysdeps/unix/sysv/linux/write.c:26
+0x000000000040411a in ft_putstr_fd (s=0x4054b8 "rra\n", fd=1) at ft_putstr_fd.c:27
+Value returned is $5 = 4
+#0  0x000000000040411a in ft_putstr_fd (s=0x4054b8 "rra\n", fd=1) at ft_putstr_fd.c:27
+rev_rotate_a (stack_a=0x7fffffffd4b0) at ../dcll2.c:85
+#0  rev_rotate_a (stack_a=0x7fffffffd4b0) at ../dcll2.c:85
+push_chunk (stack_a=0x7fffffffd4b0, stack_b=0x7fffffffd4a8, min=0, max=2) at ../chunk_based.c:48
+rev_rotate_a (stack_a=0x7fffffffd4b0) at ../dcll2.c:83
+#0  rev_rotate_a (stack_a=0x7fffffffd4b0) at ../dcll2.c:83
+push_chunk (stack_a=0x7fffffffd4b0, stack_b=0x7fffffffd4a8, min=0, max=2) at ../chunk_based.c:48
+rev_rotate_a (stack_a=0x7fffffffd4b0) at ../dcll2.c:83
+#0  rev_rotate_a (stack_a=0x7fffffffd4b0) at ../dcll2.c:83
+push_chunk (stack_a=0x7fffffffd4b0, stack_b=0x7fffffffd4a8, min=0, max=2) at ../chunk_based.c:48
+rev_rotate_a (stack_a=0x7fffffffd4b0) at ../dcll2.c:83
+#0  rev_rotate_a (stack_a=0x7fffffffd4b0) at ../dcll2.c:83
+push_chunk (stack_a=0x7fffffffd4b0, stack_b=0x7fffffffd4a8, min=0, max=2) at ../chunk_based.c:48
+rev_rotate_a (stack_a=0x7fffffffd4b0) at ../dcll2.c:83
+#0  rev_rotate_a (stack_a=0x7fffffffd4b0) at ../dcll2.c:83
+push_chunk (stack_a=0x7fffffffd4b0, stack_b=0x7fffffffd4a8, min=0, max=2) at ../chunk_based.c:48
+rev_rotate_a (stack_a=0x7fffffffd4b0) at ../dcll2.c:83
+#0  rev_rotate_a (stack_a=0x7fffffffd4b0) at ../dcll2.c:83
+push_chunk (stack_a=0x7fffffffd4b0, stack_b=0x7fffffffd4a8, min=0, max=2) at ../chunk_based.c:48
+#0  push_chunk (stack_a=0x7fffffffd4b0, stack_b=0x7fffffffd4a8, min=0, max=2) at ../chunk_based.c:48
+
+Program received signal SIGINT, Interrupt.
+__internal_syscall_cancel (a1=1, a2=4215992, a3=4, a4=a4@entry=0, a5=a5@entry=0, a6=a6@entry=0, nr=1) at cancellation.c:44

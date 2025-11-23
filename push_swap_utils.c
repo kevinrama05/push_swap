@@ -6,7 +6,7 @@
 /*   By: kerama <kerama@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/05 14:28:38 by kerama            #+#    #+#             */
-/*   Updated: 2025/11/18 09:45:06 by kerama           ###   ########.fr       */
+/*   Updated: 2025/11/23 11:21:49 by kerama           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,7 +63,7 @@ void init_flags(t_flags *f)
     f->bench = 0;
 }
 
-void	check_flags(char **flag, t_flags *args)
+void	check_flags(char *flag, t_flags *args)
 {
 	if (c(flag, "--bench") == 0)
 		args->bench++;

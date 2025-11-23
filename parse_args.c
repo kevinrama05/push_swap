@@ -3,14 +3,15 @@
 /*                                                        :::      ::::::::   */
 /*   parse_args.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ekrama10 <ekrama10@student.42.fr>          +#+  +:+       +#+        */
+/*   By: kerama <kerama@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/02 10:59:54 by kerama            #+#    #+#             */
-/*   Updated: 2025/11/20 13:13:08 by ekrama10         ###   ########.fr       */
+/*   Updated: 2025/11/23 13:14:55 by kerama           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
+#include "libft/libft.h"
 #include <stdlib.h>
 
 /* t_dcll  *create_stack_a(char **args)
@@ -48,7 +49,7 @@ t_dcll	*create_stack_a(char **args)
 	t_dcll	*stack_a;
 	int		value;
 
-	i = 1;
+	i = 0;
 	stack_a = NULL;
 	while (args[i])
 	{

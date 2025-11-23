@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   chunk_based.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ekrama10 <ekrama10@student.42.fr>          +#+  +:+       +#+        */
+/*   By: kerama <kerama@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/11 11:27:26 by kerama            #+#    #+#             */
-/*   Updated: 2025/11/14 13:41:13 by ekrama10         ###   ########.fr       */
+/*   Updated: 2025/11/23 12:31:27 by kerama           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,50 +16,29 @@
 #include <stdio.h>
 #include <unistd.h>
 
-void	print_stacks(t_dcll **a, t_dcll **b)
-{
-	(void)a;
-	(void)b;
-	printf("----");
-	sleep(2);
-}
-
 static int isqrt(int n)
 {
-	int guess;
-	int prev;
+    int guess;
+    int next;
 
-	if (n < 0)
-		return -1;
-	if (n == 0 || n == 1)
-		return n;
+    if (n < 0)
+        return -1;
+    if (n == 0 || n == 1)
+        return n;
 
-	guess = n / 2;
-	prev = 0;
-	while (guess != prev)
-	{
-		prev = guess;
-		guess = (guess + n / guess) / 2;
-	}
-	if (guess * guess > n)
-		guess--;
+    guess = n / 2;
 
-	return guess;
-}
+    while (1)
+    {
+        next = (guess + n / guess) / 2;
 
-int list_size(t_dcll *stack)
-{
-	int i = 0;
-	if (!stack)
-		return i;
-	t_dcll *temp = stack;
-	while (1)
-	{
-		i++;
-		stack = stack->next;
-		if (temp == stack)
-			return i;
-	}
+        if (next >= guess)    // convergence guaranteed
+            break;
+
+        guess = next;
+    }
+
+    return guess;
 }
 
 void push_chunk(t_dcll **stack_a, t_dcll **stack_b, int min, int max)
@@ -88,17 +67,8 @@ void push_chunk(t_dcll **stack_a, t_dcll **stack_b, int min, int max)
 		}
 		else
 			rev_rotate_a(stack_a);
+		sleep(1);
 	}
-}
-
-void new_chunk(int *min, int *max, int chunk)
-{
-	*max = *max - chunk;
-	if (*max < 0)
-		*max = 0;
-	*min = *min - chunk;
-	if (*min < 0)
-		*min = 0;
 }
 
 void chunk_based_sort(t_dcll **stack_a, t_dcll **stack_b, int size)
@@ -144,7 +114,7 @@ void chunk_based_sort(t_dcll **stack_a, t_dcll **stack_b, int size)
 			}
 			else
 				rotate_b(stack_b);
-		
+			sleep(1);
 		}
 		first_chunk = 0;
 		new_chunk(&min, &max, chunk);

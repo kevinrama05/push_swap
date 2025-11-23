@@ -38,13 +38,12 @@ void	print_stacks(t_dcll *a, t_dcll *b)
 		printf("\n");
 	}
 	printf("---------------\n");
-	sleep(2);
 }
 
 void min_max_extraction(t_dcll **stack_a, t_dcll **stack_b)
 {
 	int i = 0;
-	if (check_if_sorted(*stack_a) == 1)
+	if (check_if_sorted_asc(*stack_a) == 1)
 		return ;
 	t_dcll *tmp_a = *stack_a;
         t_dcll *tmp_b = *stack_b;	
@@ -57,13 +56,11 @@ void min_max_extraction(t_dcll **stack_a, t_dcll **stack_b)
 			push_b(&tmp_a, &tmp_b);
 			i++;
 		}
-		sleep(1);
 		if (tmp_a == NULL)
 			break;
 	}
 	while (tmp_b != NULL)
 	{	
 		push_a(&tmp_b, &tmp_a);
-		sleep(1);
 	}	
 }

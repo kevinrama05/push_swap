@@ -4,6 +4,21 @@
 #include <limits.h>
 
 
+int	binary_digits(unsigned int n)
+{
+	int bits = 0;
+
+	if (n == 0)
+		return 1;
+
+	while (n > 0)
+	{
+		bits++;
+		n >>= 1;
+	}
+	return bits;
+}
+
 void radix_sort(t_dcll **stack_a, t_dcll **stack_b, int size)
 {
 	int i = 0;

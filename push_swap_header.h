@@ -2,6 +2,7 @@
 #define PUSH_SWAP_HEADER
 #include <stdlib.h>
 #include <unistd.h>
+#include <stdarg.h>
 typedef struct  s_dcll
 {
     int             data;
@@ -25,6 +26,7 @@ typedef struct s_flags
     int complex;
     int adaptive;
     int bench;
+    int args;
 }   t_flags;
 typedef struct s_ops
 {
@@ -111,4 +113,13 @@ void push_zeros(t_dcll **stack_a, t_dcll **stack_b, int k, int n);
 void radix_sort(t_dcll **stack_a, t_dcll **stack_b, int size);
 void radix_sort(t_dcll **stack_a, t_dcll **stack_b, int size);
 void radix_sort_bench(t_dcll **stack_a, t_dcll **stack_b, int size, t_ops *o);
+void    handle_format(const char *ptr, int *i, int *total, va_list args);
+int             ft_printf(const char *ptr, ...);
+void    print_hex(int *count, unsigned long n);
+void    print_bigx(int *count, unsigned long n);
+void    ft_putptr(void *ptr, int *count);
+void    ft_putchar(int *count, char c);
+void    ft_putstr(int *count, char *s);
+void    ft_putnum(int *count, int n);
+void    ft_putu(int *count, unsigned int n);
 #endif

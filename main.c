@@ -16,6 +16,20 @@ void print_list(t_dcll *head)
     printf("[END OF CYCLE]\n");
 }
 
+void printDCLL(t_dcll *head) {
+    if (!head) {
+        printf("List is empty.\n");
+        return;
+    }
+
+    t_dcll *current = head;
+    do {
+        printf("[%d|%d]  <-->  ", current->data, current->index);
+        current = current->next;
+    } while (current != head);
+    printf("[EOL]\n");
+}
+
 void	print_stacks_main(t_dcll *a, t_dcll *b)
 {
 	t_dcll	*head_a = a;
@@ -52,6 +66,23 @@ void	print_stacks_main(t_dcll *a, t_dcll *b)
 	printf("---------------\n");
 }
 
+void printHashtable(ht_t *ht) {
+    if (!ht || !ht->entries) {
+        printf("Hashtable is empty.\n");
+        return;
+    }
+
+    for (size_t i = 0; i < ht->size; i++) {
+        entry_t *current = ht->entries[i];
+        if (current) {
+            printf("Bucket %zu:\n", i);
+            while (current) {
+                printf("  Key: %u, Value: %u\n", current->key, current->value);
+                current = current->next;
+            }
+        }
+    }
+}
 
 /* int main(int argc, char **argv)
 {
@@ -101,6 +132,15 @@ void	print_stacks_main(t_dcll *a, t_dcll *b)
     return 0;
 } */
 
+//----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+//----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+//----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+//----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+//----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+//----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+//----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+//----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
 void    ht_set_hashtable(ht_t **hashtable, t_dcll *a, int size)
 {
     int i;
@@ -134,26 +174,26 @@ void    sort_stack(int argc, char **argv, t_flags flags)
     t_dcll  *stack_b;
     t_dcll  *copy_a;
     ht_t    *hashtable;
-    int     args_count;
 
-    args_count = count_args(flags);
-    stack_a = create_stack_a(argv + args_count);
-    copy_a = sort_doubly_circular(stack_a);
+    stack_a = create_stack_a(argv + flags.args);
+    stack_b = NULL;
+    copy_a = copy_list(stack_a);
+    copy_a = sort_doubly_circular(copy_a);
     if (check_if_no_dup(copy_a) == 0)
         exit_program();
-    hashtable = ht_create(argc - args_count);
-    ht_set_hashtable(&hashtable, copy_a, argc - args_count);
-    ht_fix_stack_a(hashtable, &stack_a, argc - args_count);
+    hashtable = ht_create(argc - flags.args);
+    ht_set_hashtable(&hashtable, copy_a, argc - flags.args);
+    ht_fix_stack_a(hashtable, &stack_a, argc - flags.args);
     if (flags.bench == 1)
-        bench_handle(&stack_a, &stack_b, argc - args_count, flags);
-    if (flags.adaptive == 1)
-        adaptive_sort(&stack_a, &stack_b, argc - args_count, flags);
+        bench_handle(stack_a, stack_b, argc - flags.args, flags);
+    else if (flags.adaptive == 1)
+        adaptive_sort(&stack_a, &stack_b, argc - flags.args);
     else if (flags.simple == 1)
-        min_max_extraction(&stack_a, &stack_b, flags);
+        min_max_extraction(&stack_a, &stack_b);
     else if (flags.medium == 1)
-        chunk_based_sort(&stack_a, &stack_b, argc - args_count, flags);
+        chunk_based_sort(&stack_a, &stack_b, argc - flags.args);
     else if (flags.complex == 1)
-        radix_sort(&stack_a, &stack_b, argc - args_count, flags);
+        radix_sort(&stack_a, &stack_b, argc - flags.args);
 }
 
 int	main(int argc, char **argv)
@@ -168,7 +208,8 @@ int	main(int argc, char **argv)
     if (check_sort_args(a) > 1)
         exit_program();
     if (a.bench > 1)
-	exit_program();
+	    exit_program();
+    a.args = count_args(a);
     if (!a.adaptive && !a.complex && !a.medium && !a.simple)
         a.adaptive++;
     sort_stack(argc - 1, argv + 1, a);

@@ -14,14 +14,6 @@ int	check_sort_args(t_flags flags)
 	return (i);
 }
 
-int check_dup_args(t_flags flags)
-{
-	if (flags.adaptive > 1)
-		return 0;
-	else if (flags.simple > 1)
-		return 0;
-}
-
 void	exit_program(void)
 {
 	ft_putstr_fd("Error\n", 1);
@@ -34,18 +26,6 @@ int	count_args(t_flags a)
 
 	i = a.adaptive + a.bench + a.complex + a.medium + a.simple;
 	return (i); 
-}
-
-void write_two_decimals(double x)
-{
-    int int_part = (int)x;
-    int dec_part = (int)((x - int_part) * 100 + 0.5);
-
-    ft_putnbr_fd(int_part, 2);
-    ft_putchar_fd('.', 2);
-    if (dec_part < 10)
-        ft_putchar_fd('0', 2);
-    ft_putnbt_fd(dec_part, 2);
 }
 
 void adaptive_sort(t_dcll **stack_a, t_dcll **stack_b, int size)
