@@ -102,7 +102,8 @@ void swap_ab_bench(t_dcll **stack_a, t_dcll **stack_b, t_ops *o)
 	count_ops("ss", o);
 }
 
-void bench_handle(t_dcll *a, t_dcll *b, int size)
+void bench_handle(t_dcll *a, t_dcll *b, int size, t_flags flag)
 {
+	t_ops o;
 	
 }
