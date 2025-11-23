@@ -102,8 +102,25 @@ void swap_ab_bench(t_dcll **stack_a, t_dcll **stack_b, t_ops *o)
 	count_ops("ss", o);
 }
 
+void init_ops(t_ops *o)
+{
+	o->sa = 0;
+	o->sb = 0;
+	o->ss = 0;
+	o->pa = 0;
+	o->pb = 0;
+	o->ra = 0;
+	o->rb = 0;
+	o->rr = 0;
+	o->rra = 0;
+	o->rrb = 0;
+	o->rrr = 0;
+}
+
 void bench_handle(t_dcll *a, t_dcll *b, int size, t_flags flag)
 {
 	t_ops o;
-	
+	init_ops(&o);
+	if (flag.adaptive)
+		adaptive_sort_bench(a, b, size, &o);
 }

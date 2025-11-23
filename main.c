@@ -145,15 +145,15 @@ void    sort_stack(int argc, char **argv, t_flags flags)
     ht_set_hashtable(&hashtable, copy_a, argc - args_count);
     ht_fix_stack_a(hashtable, &stack_a, argc - args_count);
     if (flags.bench == 1)
-        bench_handle(&stack_a, &stack_b, argc - args_count);
+        bench_handle(&stack_a, &stack_b, argc - args_count, flags);
     if (flags.adaptive == 1)
-        adaptive_sort(&stack_a, &stack_b, argc - args_count);
+        adaptive_sort(&stack_a, &stack_b, argc - args_count, flags);
     else if (flags.simple == 1)
-        min_max_extraction(&stack_a, &stack_b);
+        min_max_extraction(&stack_a, &stack_b, flags);
     else if (flags.medium == 1)
-        chunk_based_sort(&stack_a, &stack_b, argc - args_count);
+        chunk_based_sort(&stack_a, &stack_b, argc - args_count, flags);
     else if (flags.complex == 1)
-        radix_sort(&stack_a, &stack_b, argc - args_count);
+        radix_sort(&stack_a, &stack_b, argc - args_count, flags);
 }
 
 int	main(int argc, char **argv)
@@ -162,11 +162,13 @@ int	main(int argc, char **argv)
 
     if (argc == 1)
         exit_program();
-	init_flags(&a);
-	check_flags(argv[1], &a);
-	check_flags(argv[2], &a);
+    init_flags(&a);
+    check_flags(argv[1], &a);
+    check_flags(argv[2], &a);
     if (check_sort_args(a) > 1)
         exit_program();
+    if (a.bench > 1)
+	exit_program();
     if (!a.adaptive && !a.complex && !a.medium && !a.simple)
         a.adaptive++;
     sort_stack(argc - 1, argv + 1, a);

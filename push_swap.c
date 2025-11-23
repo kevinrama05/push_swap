@@ -14,6 +14,14 @@ int	check_sort_args(t_flags flags)
 	return (i);
 }
 
+int check_dup_args(t_flags flags)
+{
+	if (flags.adaptive > 1)
+		return 0;
+	else if (flags.simple > 1)
+		return 0;
+}
+
 void	exit_program(void)
 {
 	ft_putstr_fd("Error\n", 1);
@@ -51,4 +59,16 @@ void adaptive_sort(t_dcll **stack_a, t_dcll **stack_b, int size)
 		chunk_based_sort(stack_a, stack_b, size);
 	else
 		radix_sort(stack_a, stack_b, size);
+}
+
+void adaptive_sort_bench(t_dcll **stack_a, t_dcll **stack_b, int size, t_ops *o)
+{
+	float disorder_num;
+	disorder_num = disorder(stack_a);
+	if (disorder_num <= 0.2)
+		min_max_extraction_bench(stack_a, stack_b, o);
+	else if (disorder_num <= 0.5)
+		chunk_based_sort_bench(stack_a, stack_b, size, o);
+	else
+		radix_sort_bench(stack_a, stack_b, size, o);
 }
