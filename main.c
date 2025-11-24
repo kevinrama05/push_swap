@@ -194,6 +194,9 @@ void    sort_stack(int argc, char **argv, t_flags flags)
         chunk_based_sort(&stack_a, &stack_b, argc - flags.args);
     else if (flags.complex == 1)
         radix_sort(&stack_a, &stack_b, argc - flags.args);
+    free_dcll(stack_a);
+    free_dcll(copy_a);
+    free_ht(hashtable);
 }
 
 int	main(int argc, char **argv)

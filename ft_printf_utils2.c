@@ -6,7 +6,7 @@
 /*   By: kerama <kerama@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/26 10:23:28 by kerama            #+#    #+#             */
-/*   Updated: 2025/11/23 13:25:52 by kerama           ###   ########.fr       */
+/*   Updated: 2025/11/24 00:31:13 by ekrama10         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,6 +55,13 @@ void ft_putdouble(double x)
     int int_part = (int)(x * 100);
     int dec_part = (int)(x * 10000 / 100 + 0.5);
 
+    if (x == 1.0)
+    {
+    	ft_putnbr_fd(100, 2);
+	ft_putchar_fd('.', 2);
+	ft_putstr_fd("00", 2);
+	return ;
+    }
     ft_putnbr_fd(int_part, 2);
     ft_putchar_fd('.', 2);
     if (dec_part < 10)

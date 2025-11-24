@@ -6,7 +6,7 @@
 /*   By: kerama <kerama@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/11 11:27:26 by kerama            #+#    #+#             */
-/*   Updated: 2025/11/23 12:31:27 by kerama           ###   ########.fr       */
+/*   Updated: 2025/11/24 00:26:07 by ekrama10         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,7 +67,6 @@ void push_chunk(t_dcll **stack_a, t_dcll **stack_b, int min, int max)
 		}
 		else
 			rev_rotate_a(stack_a);
-		sleep(1);
 	}
 }
 
@@ -114,7 +113,6 @@ void chunk_based_sort(t_dcll **stack_a, t_dcll **stack_b, int size)
 			}
 			else
 				rotate_b(stack_b);
-			sleep(1);
 		}
 		first_chunk = 0;
 		new_chunk(&min, &max, chunk);

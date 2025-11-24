@@ -13,6 +13,7 @@ void push_a_bench(t_dcll **stack_b, t_dcll **stack_a, t_ops *o)
 {
 	add_front(stack_a, (*stack_b)->data, (*stack_b)->index);
 	remove_front(stack_b);
+	ft_putstr_fd("pa\n", 1);
 	count_ops("pa", o);
 }
 
@@ -41,7 +42,7 @@ void rev_rotate_b_bench(t_dcll **stack_b, t_ops *o)
 {
 	*stack_b = (*stack_b)->prev;
 	ft_putstr_fd("rrb\n", 1);
-	count_ops("rb", o);
+	count_ops("rrb", o);
 }
 
 void rotate_ab_bench(t_dcll **stack_a, t_dcll **stack_b, t_ops *o)
@@ -196,6 +197,7 @@ int total_ops(t_ops o)
 void bench_handle(t_dcll *a, t_dcll *b, int size, t_flags flag)
 {
 	t_ops o;
+	float d = disorder(&a);
 	init_ops(&o);
 	if (flag.adaptive)
 		adaptive_sort_bench(&a, &b, size, &o);
@@ -205,8 +207,8 @@ void bench_handle(t_dcll *a, t_dcll *b, int size, t_flags flag)
 		chunk_based_sort_bench(&a, &b, size, &o);
 	else if (flag.complex)
 		radix_sort_bench(&a, &b, size, &o);
-	ft_printf("[bench] disorder: %f%%\n", disorder(&a));
-	ft_printf("[bench] strategy: %s / %s\n", flag_str(flag), complexity(flag, disorder(&a)));
+	ft_printf("[bench] disorder: %f%%\n", d);
+	ft_printf("[bench] strategy: %s / %s\n", flag_str(flag), complexity(flag, d));
 	ft_printf("[bench] total_ops: %i\n", total_ops(o));
 	ft_printf("[bench] sa: %i sb: %i ss: %i pa: %i pb: %i\n", o.sa, o.sb, o.ss, o.pa, o.pb);
 	ft_printf("[bench] ra: %i rb: %i rr: %i rra: %i rrb: %i rrr: %i\n", o.ra, o.rb, o.rr, o.rra, o.rrb, o.rrr);
