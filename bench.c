@@ -198,6 +198,8 @@ void bench_handle(t_dcll *a, t_dcll *b, int size, t_flags flag)
 {
 	t_ops o;
 	float d = disorder(&a);
+	if (list_size(a) == 1)
+		d = 0;
 	init_ops(&o);
 	if (flag.adaptive)
 		adaptive_sort_bench(&a, &b, size, &o);

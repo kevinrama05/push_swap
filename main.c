@@ -177,10 +177,28 @@ void    sort_stack(int argc, char **argv, t_flags flags)
 
     stack_a = create_stack_a(argv + flags.args);
     stack_b = NULL;
+    if (stack_a == stack_a->next)
+    {
+        if (flags.bench)
+        {    
+            bench_handle(stack_a, stack_b, argc - flags.args, flags);
+            free_dcll(stack_a);
+            return ;
+        }
+        else
+        {   
+            free_dcll(stack_a); 
+            return ;
+        }
+    }
     copy_a = copy_list(stack_a);
     copy_a = sort_doubly_circular(copy_a);
     if (check_if_no_dup(copy_a) == 0)
+    {
+        free_dcll(stack_a);
+        free_dcll(copy_a);
         exit_program();
+    }
     hashtable = ht_create(argc - flags.args);
     ht_set_hashtable(&hashtable, copy_a, argc - flags.args);
     ht_fix_stack_a(hashtable, &stack_a, argc - flags.args);
@@ -199,12 +217,22 @@ void    sort_stack(int argc, char **argv, t_flags flags)
     free_ht(hashtable);
 }
 
+void check_args(char *arg)
+{
+    if (is_num(arg) == 1)
+        exit(1);
+    else
+        exit_program();
+}
+
 int	main(int argc, char **argv)
 {
 	t_flags	a;
 
     if (argc == 1)
         exit_program();
+    if (argc == 2)
+        check_args(argv[1]);    
     init_flags(&a);
     check_flags(argv[1], &a);
     check_flags(argv[2], &a);

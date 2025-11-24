@@ -9,6 +9,8 @@ void radix_sort_bench(t_dcll **stack_a, t_dcll **stack_b, int size, t_ops *o)
 	int i = 0;
 	int loops = binary_digits(size - 1);
 	int j = 0;
+	if (check_if_sorted_asc(*stack_a) == 1)
+		return ;
 	while (i < loops)
 	{
 		while (j < size)

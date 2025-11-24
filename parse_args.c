@@ -6,7 +6,7 @@
 /*   By: kerama <kerama@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/02 10:59:54 by kerama            #+#    #+#             */
-/*   Updated: 2025/11/23 13:14:55 by kerama           ###   ########.fr       */
+/*   Updated: 2025/11/24 12:47:22 by kerama           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,9 +55,14 @@ t_dcll	*create_stack_a(char **args)
 	{
 		if (!is_num(args[i]))
 		{
-			free_dcll(stack_a);
-			stack_a = NULL;
-			break ;
+			if (!stack_a)
+				exit_program();
+			else
+			{
+				free_dcll(stack_a);
+				stack_a = NULL;
+				break ;
+			}
 		}
 		value = ft_atoi(args[i]);
 		if (!stack_a)

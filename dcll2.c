@@ -174,6 +174,8 @@ float disorder(t_dcll **stack_a)
 int check_if_sorted_asc(t_dcll *stack)
 {
 	t_dcll *temp = stack;
+	if (list_size(stack) == 1)
+		return (1);
 	while (1)
 	{
 		if (temp->data > temp->next->data && temp->next != stack)

@@ -45,6 +45,8 @@ void adaptive_sort_bench(t_dcll **stack_a, t_dcll **stack_b, int size, t_ops *o)
 {
 	float disorder_num;
 	disorder_num = disorder(stack_a);
+	if (list_size(*stack_a) == 1)
+		disorder_num = 0;
 	if (disorder_num <= 0.2)
 		min_max_extraction_bench(stack_a, stack_b, o);
 	else if (disorder_num <= 0.5)
