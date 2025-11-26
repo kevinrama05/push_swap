@@ -6,13 +6,13 @@
 /*   By: kerama <kerama@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/26 10:23:38 by kerama            #+#    #+#             */
-/*   Updated: 2025/11/23 11:36:27 by kerama           ###   ########.fr       */
+/*   Updated: 2025/11/26 14:45:18 by kerama           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <unistd.h>
-#include <stdio.h>
 #include "push_swap.h"
+#include <stdio.h>
+#include <unistd.h>
 
 void	print_hex(int *count, unsigned long n)
 {

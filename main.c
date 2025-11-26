@@ -1,248 +1,123 @@
-#include <unistd.h>
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   main.c                                             :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: kerama <kerama@student.42.fr>              +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/11/26 14:51:03 by kerama            #+#    #+#             */
+/*   Updated: 2025/11/26 14:58:49 by kerama           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#include "libft/libft.h"
 #include "push_swap.h"
 #include <stdio.h>
 #include <stdlib.h>
-#include "libft/libft.h"
-void print_list(t_dcll *head)
+#include <unistd.h>
+
+void	ht_create_hashtable(ht_t **hashtable, t_dcll *a, int size)
 {
-    if (!head)
-        return;
-    t_dcll *temp = head;
-    do
-    {
-        printf("[%d|%d]  <-->  ", temp->data, temp->index);
-        temp = temp->next;
-    } while (temp != head);
-    printf("[END OF CYCLE]\n");
-}
+	int	i;
 
-void printDCLL(t_dcll *head) {
-    if (!head) {
-        printf("List is empty.\n");
-        return;
-    }
-
-    t_dcll *current = head;
-    do {
-        printf("[%d|%d]  <-->  ", current->data, current->index);
-        current = current->next;
-    } while (current != head);
-    printf("[EOL]\n");
-}
-
-void	print_stacks_main(t_dcll *a, t_dcll *b)
-{
-	t_dcll	*head_a = a;
-	t_dcll	*head_b = b;
-
-	if (!a && !b)
-		return ;
-
-	printf("   a   |   b\n");
-	printf("---------------\n");
-
-	while (a || b)
+	i = 0;
+	while (i < size)
 	{
-		if (a)
-		{
-			printf("%5d", a->data); // right-aligned in width 5
-			a = (a->next != head_a) ? a->next : NULL;
-		}
-		else
-			printf("     "); // 5 spaces for empty slot
-
-		printf(" | ");
-
-		if (b)
-		{
-			printf("%5d", b->data);
-			b = (b->next != head_b) ? b->next : NULL;
-		}
-		else
-			printf("     ");
-
-		printf("\n");
+		ht_set(*hashtable, a->data, (size_t)i, (size_t)size);
+		a = a->next;
+		i++;
 	}
-	printf("---------------\n");
 }
 
-void printHashtable(ht_t *ht) {
-    if (!ht || !ht->entries) {
-        printf("Hashtable is empty.\n");
-        return;
-    }
+void	ht_fix_stack_a(ht_t *hashtable, t_dcll **a, int size)
+{
+	t_dcll	*t;
 
-    for (size_t i = 0; i < ht->size; i++) {
-        entry_t *current = ht->entries[i];
-        if (current) {
-            printf("Bucket %zu:\n", i);
-            while (current) {
-                printf("  Key: %u, Value: %u\n", current->key, current->value);
-                current = current->next;
-            }
-        }
-    }
+	t = *a;
+	while (1)
+	{
+		t->index = ht_get(hashtable, t->data, (size_t)size);
+		t = t->next;
+		if (t == *a)
+			break ;
+	}
 }
 
-/* int main(int argc, char **argv)
+void	sort_stack(int argc, char **argv, t_flags flags)
 {
-    if (argc == 1)
-    {
-        ft_putstr_fd("Error\n", 1);
-        return (0);
-    }
-    size_t size = argc - 1;
-    t_dcll *stack_a = create_stack_a(argv);
-    if (stack_a == 0)
-    {
-    	ft_putstr_fd("Error\n", 1);
-	return 0;
-    }
-//    float disorder_value = disorder(&stack_a);
-    t_dcll *copy_a = copy_list(stack_a);
-    copy_a = sort_doubly_circular(copy_a);
-    if (check_if_no_dup(copy_a) == 0)
-    {
-    	ft_putstr_fd("Error\n", 1);
-	return 0;
-    }
-    ht_t *hashtable = ht_create(size);
-    size_t i = 0;
-    while (i < size)
-    {
-        ht_set(hashtable, copy_a->data, i, size);
-        copy_a = copy_a->next;
-        i++;
-    }
-    t_dcll *temp = stack_a;
-    while (1)
-    {
-        temp->index = ht_get(hashtable, temp->data, size);
-        temp = temp->next;
-        if (temp == stack_a)
-            break;
-    }
-    t_dcll *stack_b = NULL;
-//    printf("Disorder: %.2f%%\n\n", disorder_value * 100);
-//    print_list(stack_a);
-    radix_sort(&stack_a, &stack_b, (int)size);
-    free_dcll(stack_a);
-    free_dcll(copy_a);
-    free_ht(hashtable);
-    return 0;
-} */
+	t_dcll	*stack_a;
+	t_dcll	*stack_b;
+	t_dcll	*copy_a;
+	ht_t	*hashtable;
 
-//----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-//----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-//----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-//----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-//----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-//----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-//----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-//----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-
-void    ht_set_hashtable(ht_t **hashtable, t_dcll *a, int size)
-{
-    int i;
-
-    i = 0;
-    while (i < size)
-    {
-        ht_set(*hashtable, a->data, (size_t)i, (size_t)size);
-        a = a->next;
-        i++;
-    }
+	stack_a = create_stack_a(argv + flags.args);
+	stack_b = NULL;
+	if (stack_a == stack_a->next)
+	{
+		if (flags.bench)
+		{
+			bench_handle(stack_a, stack_b, argc - flags.args, flags);
+			free_dcll(stack_a);
+			return ;
+		}
+		else
+		{
+			free_dcll(stack_a);
+			return ;
+		}
+	}
+	copy_a = copy_list(stack_a);
+	copy_a = sort_doubly_circular(copy_a);
+	if (check_if_no_dup(copy_a) == 0)
+	{
+		free_dcll(stack_a);
+		free_dcll(copy_a);
+		exit_program();
+	}
+	hashtable = ht_create(argc - flags.args);
+	ht_create_hashtable(&hashtable, copy_a, argc - flags.args);
+	ht_fix_stack_a(hashtable, &stack_a, argc - flags.args);
+	if (flags.bench == 1)
+		bench_handle(stack_a, stack_b, argc - flags.args, flags);
+	else if (flags.adaptive == 1)
+		adaptive_sort(&stack_a, &stack_b, argc - flags.args);
+	else if (flags.simple == 1)
+		min_max_extraction(&stack_a, &stack_b);
+	else if (flags.medium == 1)
+		chunk_based_sort(&stack_a, &stack_b, argc - flags.args);
+	else if (flags.complex == 1)
+		radix_sort(&stack_a, &stack_b, argc - flags.args);
+	free_dcll(stack_a);
+	free_dcll(copy_a);
+	free_ht(hashtable);
 }
 
-void    ht_fix_stack_a(ht_t *hashtable, t_dcll **a, int size)
+void	check_args(char *arg)
 {
-    t_dcll  *t;
-
-    t = *a;
-    while (1)
-    {
-        t->index = ht_get(hashtable, t->data, (size_t)size);
-        t = t->next;
-        if (t == *a)
-            break;
-    }
-}
-
-void    sort_stack(int argc, char **argv, t_flags flags)
-{
-    t_dcll  *stack_a;
-    t_dcll  *stack_b;
-    t_dcll  *copy_a;
-    ht_t    *hashtable;
-
-    stack_a = create_stack_a(argv + flags.args);
-    stack_b = NULL;
-    if (stack_a == stack_a->next)
-    {
-        if (flags.bench)
-        {    
-            bench_handle(stack_a, stack_b, argc - flags.args, flags);
-            free_dcll(stack_a);
-            return ;
-        }
-        else
-        {   
-            free_dcll(stack_a); 
-            return ;
-        }
-    }
-    copy_a = copy_list(stack_a);
-    copy_a = sort_doubly_circular(copy_a);
-    if (check_if_no_dup(copy_a) == 0)
-    {
-        free_dcll(stack_a);
-        free_dcll(copy_a);
-        exit_program();
-    }
-    hashtable = ht_create(argc - flags.args);
-    ht_set_hashtable(&hashtable, copy_a, argc - flags.args);
-    ht_fix_stack_a(hashtable, &stack_a, argc - flags.args);
-    if (flags.bench == 1)
-        bench_handle(stack_a, stack_b, argc - flags.args, flags);
-    else if (flags.adaptive == 1)
-        adaptive_sort(&stack_a, &stack_b, argc - flags.args);
-    else if (flags.simple == 1)
-        min_max_extraction(&stack_a, &stack_b);
-    else if (flags.medium == 1)
-        chunk_based_sort(&stack_a, &stack_b, argc - flags.args);
-    else if (flags.complex == 1)
-        radix_sort(&stack_a, &stack_b, argc - flags.args);
-    free_dcll(stack_a);
-    free_dcll(copy_a);
-    free_ht(hashtable);
-}
-
-void check_args(char *arg)
-{
-    if (is_num(arg) == 1)
-        exit(1);
-    else
-        exit_program();
+	if (is_num(arg) == 1)
+		exit(1);
+	else
+		exit_program();
 }
 
 int	main(int argc, char **argv)
 {
 	t_flags	a;
 
-    if (argc == 1)
-        exit_program();
-    if (argc == 2)
-        check_args(argv[1]);    
-    init_flags(&a);
-    check_flags(argv[1], &a);
-    check_flags(argv[2], &a);
-    if (check_sort_args(a) > 1)
-        exit_program();
-    if (a.bench > 1)
-	    exit_program();
-    a.args = count_args(a);
-    if (!a.adaptive && !a.complex && !a.medium && !a.simple)
-        a.adaptive++;
-    sort_stack(argc - 1, argv + 1, a);
-    return (0);
+	if (argc == 1)
+		exit_program();
+	if (argc == 2)
+		check_args(argv[1]);
+	init_flags(&a);
+	check_flags(argv[1], &a);
+	check_flags(argv[2], &a);
+	if (check_sort_args(a) > 1)
+		exit_program();
+	if (a.bench > 1)
+		exit_program();
+	a.args = count_args(a);
+	if (!a.adaptive && !a.complex && !a.medium && !a.simple)
+		a.adaptive++;
+	sort_stack(argc - 1, argv + 1, a);
+	return (0);
 }

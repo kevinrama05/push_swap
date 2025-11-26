@@ -6,19 +6,21 @@
 /*   By: kerama <kerama@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/05 14:28:38 by kerama            #+#    #+#             */
-/*   Updated: 2025/11/23 11:21:49 by kerama           ###   ########.fr       */
+/*   Updated: 2025/11/26 14:51:34 by kerama           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft/libft.h"
 #include "push_swap.h"
-#include <stdio.h>
 #include <limits.h>
+#include <stdio.h>
 #include <unistd.h>
 
-int c(char *s1, char *s2)
+int	c(char *s1, char *s2)
 {
-	int	i = 0;
+	int	i;
+
+	i = 0;
 	while (s1[i] && s2[i] && s1[i] == s2[i])
 		i++;
 	return (s1[i] - s2[i]);
@@ -31,9 +33,9 @@ int	is_num(char *nptr)
 
 	i = 0;
 	num = 0;
-	if (nptr[i] == '-'  || nptr[i] == '+')
+	if (nptr[i] == '-' || nptr[i] == '+')
 		i++;
-	while(nptr[i] && (nptr[i] >= '0' && nptr[i] <= '9'))
+	while (nptr[i] && (nptr[i] >= '0' && nptr[i] <= '9'))
 	{
 		num = (num * 10) + (nptr[i] - '0');
 		if (-num < INT_MIN || num > INT_MAX)
@@ -45,22 +47,13 @@ int	is_num(char *nptr)
 	return (1);
 }
 
-void number_of_ops(char p)
+void	init_flags(t_flags *f)
 {
-	static int ops;
-	ops++;
-	if (p == 'p')
-		ft_putnbr_fd(ops, 1);
-//	usleep(10000);
-}
-
-void init_flags(t_flags *f)
-{
-    f->simple = 0;
-    f->medium = 0;
-    f->complex = 0;
-    f->adaptive = 0;
-    f->bench = 0;
+	f->simple = 0;
+	f->medium = 0;
+	f->complex = 0;
+	f->adaptive = 0;
+	f->bench = 0;
 }
 
 void	check_flags(char *flag, t_flags *args)

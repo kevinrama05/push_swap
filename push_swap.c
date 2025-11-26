@@ -1,6 +1,18 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   push_swap.c                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: kerama <kerama@student.42.fr>              +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/11/26 14:52:10 by kerama            #+#    #+#             */
+/*   Updated: 2025/11/26 15:09:10 by kerama           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#include "libft/libft.h"
 #include "push_swap.h"
 #include <stdlib.h>
-#include "libft/libft.h"
 
 int	check_sort_args(t_flags flags)
 {
@@ -25,25 +37,31 @@ int	count_args(t_flags a)
 	int	i;
 
 	i = a.adaptive + a.bench + a.complex + a.medium + a.simple;
-	return (i); 
+	return (i);
 }
 
-void adaptive_sort(t_dcll **stack_a, t_dcll **stack_b, int size)
+void	adaptive_sort(t_dcll **stack_a, t_dcll **stack_b, int size)
 {
-	float disorder_num;
+	float	disorder_num;
 
 	disorder_num = disorder(stack_a);
 	if (disorder_num <= 0.2)
 		min_max_extraction(stack_a, stack_b);
 	else if (disorder_num <= 0.5)
+	{
 		chunk_based_sort(stack_a, stack_b, size);
+		if ((*stack_a)->index != 0)
+			rev_rotate_a(stack_a);
+	}
 	else
 		radix_sort(stack_a, stack_b, size);
 }
 
-void adaptive_sort_bench(t_dcll **stack_a, t_dcll **stack_b, int size, t_ops *o)
+void	adaptive_sort_bench(t_dcll **stack_a, t_dcll **stack_b, int size,
+		t_ops *o)
 {
-	float disorder_num;
+	float	disorder_num;
+	
 	disorder_num = disorder(stack_a);
 	if (list_size(*stack_a) == 1)
 		disorder_num = 0;

@@ -6,42 +6,13 @@
 /*   By: kerama <kerama@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/02 10:59:54 by kerama            #+#    #+#             */
-/*   Updated: 2025/11/24 12:47:22 by kerama           ###   ########.fr       */
+/*   Updated: 2025/11/26 14:51:23 by kerama           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
 #include "libft/libft.h"
+#include "push_swap.h"
 #include <stdlib.h>
-
-/* t_dcll  *create_stack_a(char **args)
-{
-    int 	i;
-	int		rank;
-	t_dcll	*stack_a;
-
-    i = 1;
-	rank = 0;
-	stack_a = NULL;
-	while (args[i])
-	{
-		if (is_num(args[i]) == 0)
-		{
-			free_dcll(stack_a);
-			return (NULL);
-		}
-		else
-		{
-			if (stack_a == NULL)
-				stack_a = create_node(ft_atoi(args[i]));
-			else
-				add_back(&stack_a, ft_atoi(args[i]), rank);
-			i++;
-			rank++;
-		}
-	}
-	return (stack_a);
-} */
 
 t_dcll	*create_stack_a(char **args)
 {
@@ -75,17 +46,3 @@ t_dcll	*create_stack_a(char **args)
 		exit_program();
 	return (stack_a);
 }
-
-
-
-/*
-3 | 0
-4 | 1
-5 | 2
-6 | 3
-7 | 4
-8 | 5
-2 | 6
-*/
-
-

@@ -1,29 +1,44 @@
-#include <stdlib.h>
-#include "push_swap.h"
-#include "libft/libft.h"
-#include <limits.h>
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   radix_sort.c                                       :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: kerama <kerama@student.42.fr>              +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/11/26 14:52:04 by kerama            #+#    #+#             */
+/*   Updated: 2025/11/26 14:52:05 by kerama           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
+#include "libft/libft.h"
+#include "push_swap.h"
+#include <limits.h>
+#include <stdlib.h>
 
 int	binary_digits(unsigned int n)
 {
-	int bits = 0;
+	int	bits;
 
+	bits = 0;
 	if (n == 0)
-		return 1;
-
+		return (1);
 	while (n > 0)
 	{
 		bits++;
 		n >>= 1;
 	}
-	return bits;
+	return (bits);
 }
 
-void radix_sort(t_dcll **stack_a, t_dcll **stack_b, int size)
+void	radix_sort(t_dcll **stack_a, t_dcll **stack_b, int size)
 {
-	int i = 0;
-	int loops = binary_digits(size - 1);
-	int j = 0;
+	int	i;
+	int	loops;
+	int	j;
+
+	i = 0;
+	loops = binary_digits(size - 1);
+	j = 0;
 	while (i < loops)
 	{
 		while (j < size)
@@ -37,7 +52,7 @@ void radix_sort(t_dcll **stack_a, t_dcll **stack_b, int size)
 		while (*stack_b)
 			push_a(stack_b, stack_a);
 		if (check_if_sorted_asc(*stack_a))
-			break;
+			break ;
 		j = 0;
 		i++;
 	}

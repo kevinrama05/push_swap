@@ -6,45 +6,51 @@
 /*   By: kerama <kerama@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/11 11:27:26 by kerama            #+#    #+#             */
-/*   Updated: 2025/11/24 00:26:07 by ekrama10         ###   ########.fr       */
+/*   Updated: 2025/11/26 15:06:17 by kerama           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdlib.h>
-#include "push_swap.h"
 #include "libft/libft.h"
+#include "push_swap.h"
 #include <stdio.h>
+#include <stdlib.h>
 #include <unistd.h>
 
-static int isqrt(int n)
+static int	isqrt(int n)
 {
-    int guess;
-    int next;
+	int	guess;
+	int	next;
 
-    if (n < 0)
-        return -1;
-    if (n == 0 || n == 1)
-        return n;
-
-    guess = n / 2;
-
-    while (1)
-    {
-        next = (guess + n / guess) / 2;
-
-        if (next >= guess)    // convergence guaranteed
-            break;
-
-        guess = next;
-    }
-
-    return guess;
+	if (n < 0)
+		return (-1);
+	if (n == 0 || n == 1)
+		return (n);
+	guess = n / 2;
+	while (1)
+	{
+		next = (guess + n / guess) / 2;
+		if (next >= guess)
+			break ;
+		guess = next;
+	}
+	return (guess);
 }
 
-void push_chunk(t_dcll **stack_a, t_dcll **stack_b, int min, int max)
+int	is_the_last_node_zero(t_dcll *a)
 {
-	int chunk_size = max - min + 1;
-	int i = 0;
+	if (a->prev->index == 0)
+		return (1);
+	else
+		return (0);
+}
+
+void	push_chunk(t_dcll **stack_a, t_dcll **stack_b, int min, int max)
+{
+	int	chunk_size;
+	int	i;
+
+	chunk_size = max - min + 1;
+	i = 0;
 	while (i != chunk_size)
 	{
 		if ((*stack_a)->index >= min && (*stack_a)->index <= max)
@@ -53,7 +59,8 @@ void push_chunk(t_dcll **stack_a, t_dcll **stack_b, int min, int max)
 				push_b(stack_a, stack_b);
 			else if ((*stack_a)->index > (*stack_b)->index)
 				push_b(stack_a, stack_b);
-			else if ((*stack_a)->index < (*stack_b)->index && (*stack_a)->index > (*stack_b)->next->index)
+			else if ((*stack_a)->index < (*stack_b)->index
+				&& (*stack_a)->index > (*stack_b)->next->index)
 			{
 				push_b(stack_a, stack_b);
 				swap_b(stack_b);
@@ -70,18 +77,23 @@ void push_chunk(t_dcll **stack_a, t_dcll **stack_b, int min, int max)
 	}
 }
 
-void chunk_based_sort(t_dcll **stack_a, t_dcll **stack_b, int size)
+void	chunk_based_sort(t_dcll **stack_a, t_dcll **stack_b, int size)
 {
-	int chunk = isqrt(size);
+	int	chunk;
+	int	max;
+	int	min;
+	int	first_chunk;
+
+	chunk = isqrt(size);
 	if (chunk < 5)
 		chunk = 5;
 	if (check_if_sorted_asc(*stack_a) == 1)
 		return ;
-	int max = size - 1;
-	int min = max - chunk + 1;
+	max = size - 1;
+	min = max - chunk + 1;
 	if (min < 0)
 		min = 0;
-	int first_chunk = 1;
+	first_chunk = 1;
 	while (1)
 	{
 		push_chunk(stack_a, stack_b, min, max);
@@ -117,7 +129,10 @@ void chunk_based_sort(t_dcll **stack_a, t_dcll **stack_b, int size)
 		first_chunk = 0;
 		new_chunk(&min, &max, chunk);
 		if (min == 0 && max == 0)
-			break;
+		{
+			if ((*stack_a)->index != 0)
+				rev_rotate_a(stack_a);
+			break ;
+		}
 	}
 }
-

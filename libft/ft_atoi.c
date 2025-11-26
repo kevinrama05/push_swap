@@ -6,7 +6,7 @@
 /*   By: kerama <kerama@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/14 14:23:12 by kerama            #+#    #+#             */
-/*   Updated: 2025/10/17 10:32:16 by kerama           ###   ########.fr       */
+/*   Updated: 2025/11/26 15:10:11 by kerama           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,8 +17,8 @@
 
 int	ft_atoi(const char *nptr)
 {
-	int	i;
-	int	sign;
+	int		i;
+	int		sign;
 	long	num;
 
 	i = 0;

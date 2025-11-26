@@ -1,44 +1,41 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   min_max_extraction_bench.c                         :+:      :+:    :+:   */
+/*   free_ht.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: kerama <kerama@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/11/26 14:50:56 by kerama            #+#    #+#             */
-/*   Updated: 2025/11/26 14:50:57 by kerama           ###   ########.fr       */
+/*   Created: 2025/11/26 14:57:56 by kerama            #+#    #+#             */
+/*   Updated: 2025/11/26 15:07:56 by kerama           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft/libft.h"
 #include "push_swap.h"
+#include <limits.h>
 #include <stdio.h>
 #include <stdlib.h>
-#include <unistd.h>
+#include <string.h>
 
-void	min_max_extraction_bench(t_dcll **stack_a, t_dcll **stack_b, t_ops *o)
+void	free_ht(ht_t *table)
 {
+	entry_t	*entry;
+	entry_t	*temp;
 	int		i;
-	t_dcll	*tmp_a;
-	t_dcll	*tmp_b;
 
 	i = 0;
-	if (check_if_sorted_asc(*stack_a) == 1)
+	if (!table || !table->entries)
 		return ;
-	tmp_a = *stack_a;
-	tmp_b = *stack_b;
-	while (1)
+	while (i < table->size)
 	{
-		if (tmp_a->index != i)
-			rotate_a_bench(&tmp_a, o);
-		else
+		entry = table->entries[i];
+		while (entry)
 		{
-			push_b_bench(&tmp_a, &tmp_b, o);
-			i++;
+			temp = entry;
+			entry = entry->next;
+			free(temp);
 		}
-		if (tmp_a == NULL)
-			break ;
+		i++;
 	}
-	while (tmp_b != NULL)
-		push_a_bench(&tmp_b, &tmp_a, o);
+	free(table->entries);
+	free(table);
 }
