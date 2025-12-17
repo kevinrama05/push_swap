@@ -16,27 +16,23 @@ static int	ft_find_element_a(t_ps_data *d, int min, int max)
 {
 	t_node	*head_temp;
 	t_node	*tail_temp;
-	int		dist_head;
-	int		dist_tail;
+	int		orientation;
 
+	orientation = 0;
 	head_temp = d->a->head;
 	tail_temp = d->a->tail;
-	dist_head = 1;
-	dist_tail = -1;
 	while (head_temp)
 	{
 		if (head_temp->index >= min && head_temp->index <= max)
-			break ;
+			orientation = 1;
 		if (tail_temp->index >= min && head_temp->index <= max)
-			break ;
-		dist_head++;
-		dist_tail--;
+			orientation = -1;
 		head_temp = head_temp->next;
 		tail_temp = tail_temp->prev;
+		if (orientation != 0)
+			return (orientation);
 	}
-	if (-dist_tail < dist_head)
-		return (dist_tail);
-	return (dist_head);
+	return (0);
 }
 
 static int	ft_find_element_b(t_ps_data *d, int min, int max)
