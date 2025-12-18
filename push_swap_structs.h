@@ -59,4 +59,13 @@ typedef struct s_ps_data
 	char			*complexity_class;
 }					t_ps_data;
 
+/* This structure is used for Chunk Sort */
+typedef struct s_chunk
+{
+	int				min;
+	int				max;
+	int				chunk_size;
+	int				first_chunk;
+}					t_chunk;
+
 #endif
