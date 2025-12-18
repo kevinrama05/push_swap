@@ -20,6 +20,8 @@ void	ft_sort_radix(t_ps_data *data)
 	int	i;
 	int	j;
 
+	data->strategy_name = "Complex";
+	
 	n = ft_num_of_bytes(data->a->size - 1);
 	size = data->a->size;
 	i = 0;

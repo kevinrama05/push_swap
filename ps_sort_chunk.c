@@ -56,22 +56,16 @@ static void	ft_push_chunk_b(t_ps_data *data, t_chunk *chunk)
 	}
 }
 
-static void	ft_push_chunk_a(t_ps_data *data, t_chunk *chunk)
+static void ft_push_chunk_a(t_ps_data *data)
 {
-	if (chunk->first_chunk == 0)
-		ft_smart_rotate_a(data, chunk->max + 1, chunk->max + 1);
-	else
-		pa(data);
-	while (data->b->size != 0)
+	ft_smart_rotate_a(data, data->b->head->index + 1, data->b->head->index + 1);
+	while (data->b->size )
 	{
 		if (data->b->head->index == data->a->head->index - 1)
 			pa(data);
 		else
 		{
-			if (chunk->first_chunk == 0 && data->counts->pa_count == 0)
-				ft_smart_rotate_b(data, data->a->head->index - 1,
-								data->a->head->index - 1);
-			pa(data);
+			ft_smart_rotate_b(data, data->a->head->index - 1, data->a->head->index - 1);
 		}
 	}
 }
@@ -93,11 +87,15 @@ void	ft_sort_chunk(t_ps_data *data)
 {
 	t_chunk	chunk;
 
+	data->strategy_name = "Medium";
+	data->complexity_class = "O(n√n)";
 	init_chunk(&chunk, data->a->size);
 	while (1)
 	{
 		ft_push_chunk_b(data, &chunk);
-		ft_push_chunk_a(data, &chunk);
+		if (chunk.first_chunk == 1)
+			pa(data);
+		ft_push_chunk_a(data);
 		ft_new_chunk(&chunk);
 		if (chunk.min == 0 && chunk.max == 0)
 		{

@@ -12,15 +12,15 @@
 
 #include "push_swap.h"
 
-/* static void	ft_sort_adaptive(t_ps_data *data, float disorder)
-{
-	if (disorder <= 0.2)
-		ft_sort_simple(data);
-	else if (disorder <= 0.5)
-		ft_sort_chunk(data);
-	else
-		ft_sort_radix(data);
-} */
+// static void	ft_sort_adaptive(t_ps_data *data, float disorder)
+// {
+// 	if (disorder <= 0.2)
+// 		ft_sort_simple(data);
+// 	else if (disorder <= 0.5)
+// 		ft_sort_chunk(data);
+// 	else
+// 		ft_sort_radix(data);
+// }
 
 void	ft_tiny_sort(t_ps_data *data)
 {
@@ -69,27 +69,24 @@ int	ft_is_sorted(t_stack *a)
 
 void	ft_solve(t_ps_data *data)
 {
-/* 	float	disorder;
+ 	// float	disorder;
 
-	if (ft_is_sorted(data->a))
-	{
-		data->strategy_name = "already sorted";
-		data->complexity_class = "O(1)";
-		return ;
-	}
-	ft_sort_simple(data);
-	disorder = ft_calculate_disorder(data->a);
-	if (data->flag_adaptive == 1)
-		ft_sort_adaptive(data, disorder);
-	else if (data->flag_simple == 1)
-		ft_sort_simple(data);
-	else if (data->flag_medium == 1)
+	// if (ft_is_sorted(data->a))
+	// {
+	// 	data->strategy_name = "already sorted";
+	// 	data->complexity_class = "O(1)";
+	// 	return ;
+	// }
+	// ft_sort_simple(data);
+	// disorder = ft_calculate_disorder(data->a);
+	// if (data->flag_adaptive == 1)
+	// 	ft_sort_adaptive(data, disorder);
+	// else if (data->flag_simple == 1)
+	// 	ft_sort_simple(data);
+	// else if (data->flag_medium == 1)
 		ft_sort_chunk(data);
-	else if (data->flag_complex == 1)
-		ft_sort_radix(data); */
-	ft_sort_chunk(data);
-	// else if (data->a->size <= 500 && ft_calculate_disorder(data->a) < 0.2)
-	// 	ft_sort_chunk(data);
-	// else
+	// else if (data->flag_complex == 1)
 	// 	ft_sort_radix(data);
+	// if (data->flag_bench == 1)
+	// 	ft_print_benchmark(data);
 }

@@ -98,8 +98,6 @@ void	ft_smart_rotate_a(t_ps_data *data, int min, int max)
 		return ;
 	if (data->a->tail->index >= min && data->a->tail->index <= max)
 		rra(data);
-	else if (data->a->head->next->index >= min && data->a->head->next->index <= max)
-		sa(data);
 	else
 	{
 		i = ft_find_element_a(data, min, max);

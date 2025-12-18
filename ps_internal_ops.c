@@ -49,6 +49,7 @@ void	_internal_rotate(t_stack *stack)
 	stack->head->prev = NULL;
 	temp->next = NULL;
 	ft_add_node_back(stack, temp);
+	stack->size--;
 }
 
 void	_internal_rrotate(t_stack *stack)
