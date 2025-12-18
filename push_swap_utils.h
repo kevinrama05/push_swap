@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   push_swap_utils.h                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kerama <kerama@student.42.fr>              +#+  +:+       +#+        */
+/*   By: ekrama10 <ekrama10@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/14 18:24:25 by vgramozi          #+#    #+#             */
-/*   Updated: 2025/12/17 11:32:38 by kerama           ###   ########.fr       */
+/*   Updated: 2025/12/18 11:43:49 by ekrama10         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,6 +60,7 @@ float		ft_calculate_disorder(t_stack *a);
 int			ft_is_sorted(t_stack *a);
 void        ft_tiny_sort(t_ps_data *data);
 void        ft_sort_radix(t_ps_data *data);
+void        ft_sort_chunk(t_ps_data *data);
 
 /* Smart Rotate Ops*/
 void        ft_smart_rotate_a(t_ps_data *data, int min, int max);

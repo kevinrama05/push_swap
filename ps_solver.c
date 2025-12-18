@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ps_solver.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kerama <kerama@student.42.fr>              +#+  +:+       +#+        */
+/*   By: ekrama10 <ekrama10@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/17 10:32:25 by kerama            #+#    #+#             */
-/*   Updated: 2025/12/17 11:39:22 by kerama           ###   ########.fr       */
+/*   Updated: 2025/12/18 11:46:21 by ekrama10         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,7 +87,7 @@ void	ft_solve(t_ps_data *data)
 		ft_sort_chunk(data);
 	else if (data->flag_complex == 1)
 		ft_sort_radix(data); */
-	ft_sort_radix(data);
+	ft_sort_chunk(data);
 	// else if (data->a->size <= 500 && ft_calculate_disorder(data->a) < 0.2)
 	// 	ft_sort_chunk(data);
 	// else

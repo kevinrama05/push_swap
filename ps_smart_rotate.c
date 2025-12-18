@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ps_smart_rotate.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kerama <kerama@student.42.fr>              +#+  +:+       +#+        */
+/*   By: ekrama10 <ekrama10@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/17 10:56:48 by kerama            #+#    #+#             */
-/*   Updated: 2025/12/17 12:03:58 by kerama           ###   ########.fr       */
+/*   Updated: 2025/12/18 11:01:28 by ekrama10         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,6 +67,8 @@ void	ft_smart_rotate_b(t_ps_data *data, int min, int max)
 	int		i;
 
 	i = 0;
+	if (data->b->head->index >= min && data->b->head->index <= max)
+		return ;
 	if (data->b->tail->index >= min && data->b->tail->index <= max)
 		rrb(data);
 	else if (data->b->head->next->index >= min && data->b->head->next->index <= max)
@@ -92,6 +94,8 @@ void	ft_smart_rotate_a(t_ps_data *data, int min, int max)
 	int		i;
 
 	i = 0;
+	if (data->a->head->index >= min && data->a->head->index <= max)
+		return ;
 	if (data->a->tail->index >= min && data->a->tail->index <= max)
 		rra(data);
 	else if (data->a->head->next->index >= min && data->a->head->next->index <= max)
