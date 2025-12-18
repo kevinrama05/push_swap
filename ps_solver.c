@@ -87,7 +87,7 @@ void	ft_solve(t_ps_data *data)
 		ft_sort_chunk(data);
 	else if (data->flag_complex == 1)
 		ft_sort_radix(data); */
-	ft_sort_simple(data);
+	ft_sort_radix(data);
 	// else if (data->a->size <= 500 && ft_calculate_disorder(data->a) < 0.2)
 	// 	ft_sort_chunk(data);
 	// else

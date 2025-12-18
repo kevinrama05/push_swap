@@ -59,6 +59,7 @@ void		ft_sort_simple(t_ps_data *data);
 float		ft_calculate_disorder(t_stack *a);
 int			ft_is_sorted(t_stack *a);
 void        ft_tiny_sort(t_ps_data *data);
+void        ft_sort_radix(t_ps_data *data);
 
 /* Smart Rotate Ops*/
 void        ft_smart_rotate_a(t_ps_data *data, int min, int max);
