@@ -89,6 +89,8 @@ void	ft_sort_chunk(t_ps_data *data)
 
 	data->strategy_name = "Medium";
 	data->complexity_class = "O(n√n)";
+	if (ft_is_sorted(data->a))
+		return ;
 	init_chunk(&chunk, data->a->size);
 	while (1)
 	{

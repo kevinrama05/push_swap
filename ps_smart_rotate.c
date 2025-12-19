@@ -6,7 +6,7 @@
 /*   By: ekrama10 <ekrama10@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/17 10:56:48 by kerama            #+#    #+#             */
-/*   Updated: 2025/12/18 11:01:28 by ekrama10         ###   ########.fr       */
+/*   Updated: 2025/12/18 21:25:52 by ekrama10         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,21 +16,17 @@ static int	ft_find_element_a(t_ps_data *d, int min, int max)
 {
 	t_node	*head_temp;
 	t_node	*tail_temp;
-	int		orientation;
 
-	orientation = 0;
 	head_temp = d->a->head;
 	tail_temp = d->a->tail;
 	while (head_temp)
 	{
 		if (head_temp->index >= min && head_temp->index <= max)
-			orientation = 1;
-		if (tail_temp->index >= min && head_temp->index <= max)
-			orientation = -1;
+			return (1);
+		else if (tail_temp->index >= min && tail_temp->index <= max)
+			return (-1);
 		head_temp = head_temp->next;
 		tail_temp = tail_temp->prev;
-		if (orientation != 0)
-			return (orientation);
 	}
 	return (0);
 }
@@ -50,7 +46,7 @@ static int	ft_find_element_b(t_ps_data *d, int min, int max)
 	{
 		if (head_temp->index >= min && head_temp->index <= max)
 			break ;
-		if (tail_temp->index >= min && head_temp->index <= max)
+		if (tail_temp->index >= min && tail_temp->index <= max)
 			break ;
 		dist_head++;
 		dist_tail--;
@@ -101,7 +97,7 @@ void	ft_smart_rotate_a(t_ps_data *data, int min, int max)
 	else
 	{
 		i = ft_find_element_a(data, min, max);
-		if (i > 0)
+		if (i == 1)
 		{
 			while (data->a->head->index > max || data->a->head->index < min)
 				ra(data);

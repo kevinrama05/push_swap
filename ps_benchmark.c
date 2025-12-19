@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ps_benchmark.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vgramozi <vgramozi@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ekrama10 <ekrama10@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/14 23:15:12 by vgramozi          #+#    #+#             */
-/*   Updated: 2025/12/14 23:15:42 by vgramozi         ###   ########.fr       */
+/*   Updated: 2025/12/18 22:04:50 by ekrama10         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,17 +82,15 @@ static void	ft_print_row_2(t_ps_counts *c)
 
 void	ft_print_benchmark(t_ps_data *data)
 {
-	float d;
 	int frac;
 
 	if (!data->flag_bench)
 		return ;
     // TODO: Calculate disorder before sorting and store it in t_ps_data
-	d = ft_calculate_disorder(data->a);
 	ft_putstr_fd("[bench] disorder: ", 2);
-	ft_putnbr_fd((int)(d * 100), 2);
+	ft_putnbr_fd((int)(data->disorder * 100), 2);
 	ft_putstr_fd(".", 2);
-	frac = (int)(d * 10000) % 100;
+	frac = (int)(data->disorder * 10000) % 100;
 	if (frac < 10)
 		ft_putstr_fd("0", 2);
 	ft_putnbr_fd(frac, 2);

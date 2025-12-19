@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kerama <kerama@student.42.fr>              +#+  +:+       +#+        */
+/*   By: ekrama10 <ekrama10@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/14 23:26:09 by vgramozi          #+#    #+#             */
-/*   Updated: 2025/12/17 11:57:25 by kerama           ###   ########.fr       */
+/*   Updated: 2025/12/19 14:24:08 by ekrama10         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,11 @@ static void	ft_free_param_array(char **array)
 		i++;
 	}
 	free(array);
+}
+
+static int	ft_check_args(t_ps_data *data, char **argv)
+{
+	
 }
 
 static int	ft_push_swap(int argc, char **argv)
