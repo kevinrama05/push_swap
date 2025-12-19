@@ -6,7 +6,7 @@
 /*   By: ekrama10 <ekrama10@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/14 23:26:09 by vgramozi          #+#    #+#             */
-/*   Updated: 2025/12/19 14:24:08 by ekrama10         ###   ########.fr       */
+/*   Updated: 2025/12/19 14:36:09 by ekrama10         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,10 @@ static void	ft_free_param_array(char **array)
 
 static int	ft_check_args(t_ps_data *data, char **argv)
 {
+	int	i;
+
+	ft_parse_flags(data, argv);
+	i = 1 + data->args_num;
 	
 }
 

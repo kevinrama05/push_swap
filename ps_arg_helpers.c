@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ps_arg_helpers.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vgramozi <vgramozi@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ekrama10 <ekrama10@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/14 19:11:33 by vgramozi          #+#    #+#             */
-/*   Updated: 2025/12/16 19:59:19 by vgramozi         ###   ########.fr       */
+/*   Updated: 2025/12/19 14:29:39 by ekrama10         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,25 +90,21 @@ void	ft_assign_strategy_details(t_ps_data *data, const char *arg)
 	if (ft_strcmp(arg, "--simple") == 0)
 	{
 		data->flag_simple = 1;
-		data->strategy_name = "Simple Sort (e.g., Insertion)";
-		data->complexity_class = "O(n2)";
+		data->args_num++;
 	}
 	else if (ft_strcmp(arg, "--medium") == 0)
 	{
 		data->flag_medium = 1;
-		data->strategy_name = "Medium Sort (e.g., Chunking)";
-		data->complexity_class = "O(n√n)";
+		data->args_num++;
 	}
 	else if (ft_strcmp(arg, "--complex") == 0)
 	{
 		data->flag_complex = 1;
-		data->strategy_name = "Complex Sort (e.g., Radix)";
-		data->complexity_class = "O(n log n)";
+		data->args_num++;
 	}
 	else if (ft_strcmp(arg, "--adaptive") == 0)
 	{
 		data->flag_adaptive = 1;
-		data->strategy_name = "Adaptive Sort";
-		data->complexity_class = "Determined at Runtime";
+		data->args_num++;
 	}
 }

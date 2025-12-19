@@ -6,7 +6,7 @@
 /*   By: ekrama10 <ekrama10@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/14 18:23:04 by vgramozi          #+#    #+#             */
-/*   Updated: 2025/12/18 22:06:07 by ekrama10         ###   ########.fr       */
+/*   Updated: 2025/12/19 14:28:55 by ekrama10         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,6 +66,7 @@ t_ps_data	*ft_init_data(void)
 	data->flag_complex = 0;
 	data->flag_adaptive = 0;
 	data->disorder = 0.0;
+	data->args_num = 0;
 	data->strategy_name = NULL;
 	data->complexity_class = NULL;
 	return (data);
