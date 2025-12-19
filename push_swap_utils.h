@@ -39,6 +39,7 @@ int			ft_is_arg_number(const char *arg);
 char		**ft_collect_numbers(int argc, char **argv, t_ps_data *data);
 void		ft_index_stack(t_stack *a);
 char		**ft_split(char const *s, char c);
+void		ft_parse_flags(t_ps_data *data, char **argv);
 
 /* Lib Helpers */
 void		ft_putchar_fd(char c, int fd);

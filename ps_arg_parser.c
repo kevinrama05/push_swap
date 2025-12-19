@@ -29,7 +29,7 @@ void	ft_set_strategy(t_ps_data *data, const char *arg)
 	ft_assign_strategy_details(data, arg);
 }
 
-static void	ft_parse_flags(t_ps_data *data, char **argv)
+void	ft_parse_flags(t_ps_data *data, char **argv)
 {
 	if (ft_is_strategy_selector(argv[1]))
 		ft_set_strategy(data, argv[1]);
