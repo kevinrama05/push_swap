@@ -6,7 +6,7 @@
 /*   By: ekrama10 <ekrama10@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/14 23:26:09 by vgramozi          #+#    #+#             */
-/*   Updated: 2025/12/19 14:36:09 by ekrama10         ###   ########.fr       */
+/*   Updated: 2025/12/20 00:09:49 by ekrama10         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,40 +28,40 @@ static void	ft_free_param_array(char **array)
 	free(array);
 }
 
-static int        is_num(char *nptr)
-{
-        int                        i;
-        long long        num;
+// static int        is_num(char *nptr)
+// {
+//         int                        i;
+//         long long        num;
 
-        i = 0;
-        num = 0;
-        if (nptr[i] == '-' || nptr[i] == '+')
-                i++;
-        while (nptr[i] && (nptr[i] >= '0' && nptr[i] <= '9'))
-        {
-                num = (num * 10) + (nptr[i] - '0');
-                if (-num < INT_MIN || num > INT_MAX)
-                        return (0);
-                i++;
-        }
-        if (nptr[i] != '\0')
-                return (0);
-        return (1);
-}
+//         i = 0;
+//         num = 0;
+//         if (nptr[i] == '-' || nptr[i] == '+')
+//                 i++;
+//         while (nptr[i] && (nptr[i] >= '0' && nptr[i] <= '9'))
+//         {
+//                 num = (num * 10) + (nptr[i] - '0');
+//                 if (-num < INT_MIN || num > INT_MAX)
+//                         return (0);
+//                 i++;
+//         }
+//         if (nptr[i] != '\0')
+//                 return (0);
+//         return (1);
+// }
 
-static void	ft_check_args(t_ps_data *data, char **argv)
-{
-	int	i;
+// static void	ft_check_args(t_ps_data *data, char **argv)
+// {
+// 	int	i;
 
-	ft_parse_flags(data, argv);
-	i = 1 + data->args_num;
-	while (argv[i])
-	{
-		if (is_num(argv[i]) == 0)
-			ft_clean_exit(data, EXIT_FAILURE);
-		i++;
-	}
-}
+// 	ft_parse_flags(data, argv);
+// 	i = 1 + data->args_num;
+// 	while (argv[i])
+// 	{
+// 		if (is_num(argv[i]) == 0)
+// 			ft_clean_exit(data, EXIT_FAILURE);
+// 		i++;
+// 	}
+// }
 
 static int	ft_push_swap(int argc, char **argv)
 {
@@ -72,7 +72,7 @@ static int	ft_push_swap(int argc, char **argv)
 	data = ft_init_data();
 	if (!data)
 		return (1);
-	ft_check_args(data, argv);
+	// ft_check_args(data, argv);
 	num_args = ft_parse_arguments(data, argc, argv);
 	if (!num_args)
 		ft_clean_exit(data, EXIT_FAILURE);

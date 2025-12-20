@@ -21,6 +21,7 @@ void	ft_sort_radix(t_ps_data *data)
 	int	j;
 
 	data->strategy_name = "Complex";
+	data->complexity_class = "O(n log n)";
 	if (ft_is_sorted(data->a))
 		return ;
 	n = ft_num_of_bytes(data->a->size - 1);

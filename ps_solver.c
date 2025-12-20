@@ -6,7 +6,7 @@
 /*   By: ekrama10 <ekrama10@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/17 10:32:25 by kerama            #+#    #+#             */
-/*   Updated: 2025/12/18 22:07:20 by ekrama10         ###   ########.fr       */
+/*   Updated: 2025/12/20 00:49:48 by ekrama10         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@ static void	ft_sort_adaptive(t_ps_data *data)
 		ft_sort_chunk(data);
 	else
 		ft_sort_radix(data);
+	data->strategy_name = "Adaptive";
 }
 
 void	ft_tiny_sort(t_ps_data *data)

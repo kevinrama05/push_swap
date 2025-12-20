@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ps_error_handling.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vgramozi <vgramozi@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ekrama10 <ekrama10@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/14 19:21:40 by vgramozi          #+#    #+#             */
-/*   Updated: 2025/12/16 19:38:37 by vgramozi         ###   ########.fr       */
+/*   Updated: 2025/12/20 01:41:15 by ekrama10         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ static int	ft_check_int_and_range(const char *arg, t_ps_data *data)
 	return ((int)num_l);
 }
 
-static void	ft_check_duplicates(t_stack *a, t_ps_data *data)
+static int	ft_check_duplicates(t_stack *a)
 {
 	t_node	*current;
 	t_node	*runner;
@@ -46,17 +46,19 @@ static void	ft_check_duplicates(t_stack *a, t_ps_data *data)
 		while (runner)
 		{
 			if (current->value == runner->value)
-				ft_clean_exit(data, EXIT_FAILURE);
+				return (1);
 			runner = runner->next;
 		}
 		current = current->next;
 	}
+	return (0);
 }
 
 void	ft_build_stack_a(t_ps_data *data, int num_count, char **num_args)
 {
 	int		i;
 	int		num;
+	int		j;
 	t_node	*new_node;
 
 	i = 0;
@@ -67,7 +69,38 @@ void	ft_build_stack_a(t_ps_data *data, int num_count, char **num_args)
 		ft_add_node_back(data->a, new_node);
 		i++;
 	}
-	ft_check_duplicates(data->a, data);
+	if (ft_check_duplicates(data->a))
+	{
+		j = 0;
+		while (num_args[j])
+		{
+			free(num_args[j]);
+			j++;
+		}
+		free(num_args);
+		ft_free_and_exit(data);
+	}
+}
+
+void	ft_free_and_exit(t_ps_data *data)
+{
+	if (data)
+	{
+		if (data->a)
+		{
+			ft_free_stack(data->a);
+			free(data->a);
+		}
+		if (data->b)
+		{
+			ft_free_stack(data->b);
+			free(data->b);
+		}
+		if (data->counts)
+			free(data->counts);
+		free(data);
+	}
+	ft_error_exit();
 }
 
 // void	ft_is_sorted(t_ps_data *data)

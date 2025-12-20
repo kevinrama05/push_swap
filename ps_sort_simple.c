@@ -6,7 +6,7 @@
 /*   By: ekrama10 <ekrama10@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/17 11:35:37 by kerama            #+#    #+#             */
-/*   Updated: 2025/12/18 21:16:28 by ekrama10         ###   ########.fr       */
+/*   Updated: 2025/12/20 00:46:45 by ekrama10         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ void	ft_sort_simple(t_ps_data *data)
 	int	size;
 
 	data->strategy_name = "Simple Sort";
-	data->complexity_class = "O(n^2)";
+	data->complexity_class = "O(n²)";
 	size = data->a->size;
 	i = 0;
 	if (ft_is_sorted(data->a))

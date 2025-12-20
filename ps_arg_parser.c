@@ -6,7 +6,7 @@
 /*   By: ekrama10 <ekrama10@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/14 19:10:21 by vgramozi          #+#    #+#             */
-/*   Updated: 2025/12/19 14:34:50 by ekrama10         ###   ########.fr       */
+/*   Updated: 2025/12/20 00:41:25 by ekrama10         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,8 @@ void	ft_parse_flags(t_ps_data *data, char **argv)
 		data->flag_bench = 1;
 		data->args_num++;
 	}
-	if (data->args_num == 0)
+	if (data->flag_adaptive == 0 && data->flag_complex == 0
+		&& data->flag_medium == 0 && data->flag_simple == 0)
 	{
 		data->flag_adaptive = 1;
 	}

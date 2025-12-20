@@ -6,7 +6,7 @@
 /*   By: ekrama10 <ekrama10@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/14 19:11:33 by vgramozi          #+#    #+#             */
-/*   Updated: 2025/12/19 14:29:39 by ekrama10         ###   ########.fr       */
+/*   Updated: 2025/12/20 01:35:02 by ekrama10         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,14 +23,14 @@ int	ft_is_arg_number(const char *arg)
 	return (1);
 }
 
-static char	**ft_join_args(int argc, char **argv)
+static char	**ft_join_args(t_ps_data *data, int argc, char **argv)
 {
 	int		i;
 	char	*tmp;
 	char	*joined;
 	char	**split_res;
 
-	i = 1;
+	i = 1 + data->args_num;
 	joined = ft_strdup("");
 	while (i < argc)
 	{
@@ -40,6 +40,11 @@ static char	**ft_join_args(int argc, char **argv)
 			free(joined);
 			joined = ft_strjoin(tmp, " ");
 			free(tmp);
+		}
+		else
+		{
+			free(joined);
+			ft_free_and_exit(data);
 		}
 		i++;
 	}
@@ -55,7 +60,7 @@ char	**ft_collect_numbers(int argc, char **argv, t_ps_data *data)
 	if (argc == 2 && ft_is_arg_number(argv[1]))
 		res = ft_split(argv[1], ' ');
 	else
-		res = ft_join_args(argc, argv);
+		res = ft_join_args(data, argc, argv);
 	if (!res)
 		ft_clean_exit(data, EXIT_FAILURE);
 	return (res);

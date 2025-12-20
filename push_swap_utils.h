@@ -6,7 +6,7 @@
 /*   By: ekrama10 <ekrama10@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/14 18:24:25 by vgramozi          #+#    #+#             */
-/*   Updated: 2025/12/18 11:43:49 by ekrama10         ###   ########.fr       */
+/*   Updated: 2025/12/20 01:34:40 by ekrama10         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@ t_stack		*ft_init_stack(char name);
 t_ps_data	*ft_init_data(void);
 void		ft_free_stack(t_stack *stack);
 void		ft_clean_exit(t_ps_data *data, int success_code);
+void        ft_free_and_exit(t_ps_data *data);
 
 /* Node Ops */
 t_node		*ft_new_node(int value);
