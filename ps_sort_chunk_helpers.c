@@ -1,24 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   push_swap.h                                        :+:      :+:    :+:   */
+/*   ps_sort_chunk_helpers.c                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vgramozi <vgramozi@student.42.fr>          +#+  +:+       +#+        */
+/*   By: kerama <kerama@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/12/14 18:15:56 by vgramozi          #+#    #+#             */
-/*   Updated: 2025/12/16 20:14:50 by vgramozi         ###   ########.fr       */
+/*   Created: 2025/12/20 09:25:35 by kerama            #+#    #+#             */
+/*   Updated: 2025/12/20 09:33:53 by kerama           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef PUSH_SWAP_H
-# define PUSH_SWAP_H
+#include "push_swap.h"
 
-# include "push_swap_error.h"
-# include "push_swap_ops.h"
-# include "push_swap_structs.h"
-# include "push_swap_utils.h"
-# include <limits.h>
-# include <stdlib.h>
-# include <unistd.h>
-
-#endif
+void	pb_rb(t_ps_data *data)
+{
+	pb(data);
+	rb(data);
+}
